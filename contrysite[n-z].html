@@ -3,57 +3,47 @@
 <head>
   <title>The Country Book - World List</title>
   <style>
-    * {
-      box-sizing: border-box;
-      font-family: sans-serif;
-      margin: 0;
-      padding: 0;
-    }
+   * {
+    box-sizing: border-box;
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+  }
 
-    body {
-      color: #333;
-    }
+  body {
+    color: #333;
+    background-color: #e6f0ff; /* soft light blue background */
+  }
 
-    .main-content {
-      background-color:#e6f0fb;
-      padding-bottom: 40px; /* fixed typo padding-button → padding-bottom */
-    }
+  header {
+    background-color: #1a8cff ;
+    color: #004aad; 
+    padding: 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items:center;
+    position: sticky;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+  }
 
-    header {
-      background-image: url("sohan2.png");
-      color: white;
-      padding: 20px;
-      display: flex;
-      justify-content: space-between; /* logo left, nav right */
-      align-items: center; /* fixed typo align-iteams → align-items */
-      text-align: left; /* removed center for flex layout */
-    }
+  .logo {
+    font-size: 32px;
+    font-weight: bold;
+    color: white;
+  }
 
-    .logo {
-      color: white;
-      font-size: 34px;
-      font-weight: bold;
-      display: flex;
-      flex-direction: column;
-      line-height: 1.1;
-    }
+  nav a {
+    margin: 0 17px;
+    color:white;
+    text-decoration: none;
+    font-weight: bold;
+    transition: color 0.2s ease;
+    font-size: 18px;
+  }
 
-    .tagline {
-      font-size: 18px;
-      color: white;
-      margin-top: 4px;
-    }
-
-    nav a {
-      margin: 0 10px;
-      color: white;
-      text-decoration: none;
-      font-weight: bold;
-    }
-
-    nav a:hover {
-      color: white;
-    }
+  nav a:hover {
+    color: red ;
+  }
 
     h1 {
       margin: 0;
@@ -87,31 +77,42 @@
 
     /* Fixed duplicated and typo styles below */
 
-    section.hero {
-      padding: 40px 20px;
-      text-align: center;
-    }
+   .tagline {
+    font-size: 20px;
+    color: white;
+    margin-top: 4px;
+  }
 
-    section.hero p {
-      color: #4a90e2; /* fixed typo from #4a9oe2 */
-      font-size: 16px;
-      line-height: 1.6;
-    }
+  .main-content {
+    background-color: #d9ccff; 
+    padding-bottom: 40px;
+  }
 
-    .hero img {
-      max-width: 300px;
-      width: 100%;
-      margin: 20px auto; /* fixed typo autoo → auto */
-      display: block;
-    }
+  section.hero {
+    padding: 40px 20px;
+    text-align: center;
+  }
 
-    footer {
-      background-color: #ddd;
-      text-align: center;
-      padding: 10px;
-      margin-top: 20px;
-      color: #333;
-    }
+  section.hero p {
+    color: #4a90e2;
+    font-size: 16px;
+    line-height: 1.6;
+  }
+
+  .hero img {
+    max-width: 300px;
+    width: 100%;
+    margin: 20px auto;
+    display: block;
+  }
+
+  footer {
+    background-color:#9efaca ;
+    text-align: center;
+    padding: 10px;
+    margin-top: 20px;
+    color: #333;
+  }
   </style>
 </head>
 <body>
@@ -121,7 +122,7 @@
   <header>
     <div class="logo">
       <div class="logo-title">The Country Book</div>
-      <div class="tagline">One world, many nations</div>
+      <div class="tagline">One world many nations</div>
     </div>
     <nav>
       <a href="index.html">Home</a>
@@ -133,10 +134,10 @@
     </nav>
   </header>
 <br>
-  <center><h2>Country Site (N-Z)</h2></center><br>
+  <center><h2 style="color:#ff1a8c">Country Site (N-Z)</h2></center><br>
 <center><p1>Here you can find rest of the countries with alphabetic order.<p></center> <br>
-<marquee behavior="scroll" direction="left" bgcolor="#e6f0fb" width="100%" scrollamount="8">
-            <font face="Courier" color="#005ce6" size="4"> This list follows the UN-recognized 193 countries +a few common exceptions. This list assumes for general educational purpose only.  </font>
+<marquee behavior="scroll" direction="left" bgcolor="#d9ccff" width="100%" scrollamount="8">
+            <font face="Courier" color="9999ff" size="4"> This list follows the UN-recognized 193 countries +a few common exceptions. This list assumes for general educational purpose only.  </font>
         </marquee>
 
 <h2 style="color:#0066ff; text-align:center">N - 11</h2>

@@ -3,114 +3,106 @@
 <head>
   <title>Home</title>
   <style>
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-      font-family: sans-serif;
-    }
+   * {
+    box-sizing: border-box;
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+  }
 
-    body {
-      background-image: url("Japanese aesthetic cherry blossom scenery.png"); 
-      background-size: cover;
-      background-position: center;
-      background-repeat: no-repeat;
-      background-attachment: fixed;
-      color: #fff;
-    }
+  body {
+    color: #333;
+    background-color:#e6f0ff ; /* soft light blue background */
+  }
 
-    .overlay {
-      background-color: rgba(0, 0, 0, 0.55);
-      min-height: 100vh;
-    }
+  header {
+    background-color: #1a8cff ;
+    color: #004aad; 
+    padding: 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items:center;
+    position: sticky;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+  }
 
-    .main-content {
-      padding-bottom: 40px;
-    }
+  .logo {
+    font-size: 32px;
+    font-weight: bold;
+    color: white;
+  }
 
-    header {
-      background-image: url("sohan2.png");
-      color: white;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      padding: 20px;
-    }
+  nav a {
+    margin: 0 17px;
+    color:white;
+    text-decoration: none;
+    font-weight: bold;
+    transition: color 0.2s ease;
+    font-size: 18px;
+  }
 
-    .logo {
-      color: white;
-      font-size: 34px;
-      font-weight: bold;
-      display: flex;
-      flex-direction: column;
-      line-height: 1.1;
-    }
+  nav a:hover {
+    color: red ;
+  }
 
-    .tagline {
-      font-size: 18px;
-      color: white;
-      margin-top: 4px;
-    }
+  .tagline {
+    font-size: 20px;
+    color: white;
+    margin-top: 4px;
+  }
 
-    nav a {
-      margin: 0 11px;
-      color: white;
-      text-decoration: none;
-      font-weight: bold;
-    }
+  .main-content {
+    background-color: #d9ccff; 
+    padding-bottom: 40px;
+  }
 
-    nav a:hover {
-      color: white;
-    }
+  section.hero {
+    padding: 40px 20px;
+    text-align: center;
+  }
 
-    section.hero {
-      padding: 40px 20px;
-      text-align: center;
-    }
+  section.hero p {
+    color: #4a90e2;
+    font-size: 16px;
+    line-height: 1.6;
+  }
 
-    section.hero p {
-      color: #F5F5DC;
-      font-size: 18px;
-      line-height: 1.6;
-      text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.5);
-    }
-
-    .hero img {
-      max-width: 400px;
-      width: 100%;
-      display: block;
-      margin: 0 auto;
-      border-radius: 10px;
-    }
-
+  .hero img {
+    max-width: 300px;
+    width: 100%;
+    margin: 20px auto;
+    display: block;
+  }
     .wonder-box {
-      border: 3px solid white;
+      border: 3px solid #2c3e50;
       border-radius: 12px;
       padding: 15px;
       margin: 30px auto;
       max-width: 500px;
-      background-color: rgba(255, 255, 255, 0.1);
+      background-color: #d9ccff;
     }
 
     .wonder-box p {
-      color: #fbeaea;
+      color: #4b0082;
       font-size: 17px;
       text-align: center;
       margin-top: 10px;
     }
 
     h2 {
-      color: #fff;
+      color: #3f3d56;
       margin-top: 30px;
     }
 
-    footer {
-      background-color: #ddd;
-      text-align: center;
-      padding: 10px;
-      margin-top: 20px;
-      color: #000;
-    }
+ footer {
+    background-color: #9efaca;
+    text-align: center;
+    padding: 10px;
+    margin-top: 20px;
+    color: #333;
+  }
+
+  
 .centered-list {
   list-style-position: inside;
   max-width: 800px;
@@ -129,7 +121,7 @@
       <header>
         <div class="logo">
           <div class="logo-title">The Country Book</div>
-          <div class="tagline">One world, many nations</div>
+          <div class="tagline">One world many nations</div>
         </div>
         <nav>
           <a href="index.html"></a>
@@ -142,55 +134,55 @@
       </header>
 
       <section class="hero">
-        <h1 style="color:#F4C2C2"><b>Welcome to A Wonderful World</b></h1><br>
-        <p style="color:#FDF6E3">Many nations, seven wonders, many beautiful places, diverse cultures, good people, different flavours all in one world. These all make it a wonderful world. So many interesting facts blow our minds. A touch of every country in one magical scroll — so explore in one book.</p>
+        <h1 style="color:#ff1a86"><b>Welcome to A Wonderful World</b></h1><br>
+        <p style="color:#2c3e50">Many nations, seven wonders, many beautiful places, diverse cultures, good people, different flavours all in one world. These all make it a wonderful world. So many interesting facts blow our minds. A touch of every country in one magical scroll — so explore in one book.</p>
         <br><br>
-        <h2>World Wonder Showcase:</h2>
+        <h2 style="color:#ff66b3">World Wonder Showcase</h2>
 
         <div class="wonder-box">
           <h2>Chichen Itza — Mexico</h2>
-          <img src="chichen itza.jpg" alt="Chichen Itza">
-          <p>An ancient Mayan city with a pyramid called El Castillo, rich in astronomical and cultural significance.</p>
+          <img src="Mexico" alt="Chichen Itza">
+          <p><b>An ancient Mayan city with a pyramid called El Castillo, rich in astronomical and cultural significance.</b></p>
         </div>
 
         <div class="wonder-box">
           <h2>Christ the Redeemer — Brazil</h2>
-          <img src="brazil.jpg" alt="Christ the Redeemer">
-          <p>The iconic Art Deco statue of Jesus Christ overlooking Rio de Janeiro.</p>
+          <img src="Brazil.jpg" alt="Christ the Redeemer">
+          <p><b>The iconic Art Deco statue of Jesus Christ overlooking Rio de Janeiro.</b></p>
         </div>
 
         <div class="wonder-box">
           <h2>Machu Picchu — Peru</h2>
-          <img src="Machu Picchu.jpg" alt="Machu Picchu">
-          <p>A breathtaking Incan citadel nestled high in the Andes Mountains.</p>
+          <img src="dara-tucto-st77Ki_a5Pk-unsplash.jpg" alt="Machu Picchu">
+          <p><b>A breathtaking Incan citadel nestled high in the Andes Mountains.</b></p>
         </div>
 
         <div class="wonder-box">
           <h2>The Great Wall — China</h2>
-          <img src="The Great Wall.jpg" alt="The Great Wall of China">
-          <p>A massive structure stretching over 13,000 miles, built to protect ancient Chinese states.</p>
+          <img src="em-PIaO7bi0W5A-unsplash.jpg" alt="The Great Wall of China">
+          <p><b>A massive structure stretching over 13,000 miles, built to protect ancient Chinese states.</b></p>
         </div>
 
         <div class="wonder-box">
           <h2>Petra — Jordan</h2>
-          <img src="petra.webp" alt="Petra">
-          <p>A stunning rock-cut city carved into rose-colored sandstone cliffs.</p>
+          <img src="petra.jpg" alt="Petra">
+          <p><b>A stunning rock-cut city carved into rose-colored sandstone cliffs.</b></p>
         </div>
 
         <div class="wonder-box">
           <h2>The Colosseum — Italy</h2>
-          <img src="colosseum.jpg" alt="Colosseum">
-          <p>The grand Roman amphitheatre in Rome where gladiators once fought.</p>
+          <img src="abdullah-guc-IkUpS4Ntv8M-unsplash.jpg" alt="Colosseum">
+          <p><b>The grand Roman amphitheatre in Rome where gladiators once fought.</b></p>
         </div>
 
         <div class="wonder-box">
           <h2>The Taj Mahal — India</h2>
-          <img src="the taj.jpg" alt="Taj Mahal">
-          <p>A white marble mausoleum built by Emperor Shah Jahan in memory of his wife Mumtaz Mahal — a symbol of eternal love.</p>
+          <img src="adi-lica-ZpN1lhola0s-unsplash.jpg" alt="Taj Mahal">
+          <p><b>A white marble mausoleum built by Emperor Shah Jahan in memory of his wife Mumtaz Mahal — a symbol of eternal love.</b></p>
         </div>
       </section>
-<h2 style="text-align:center">Did you know?</h2><br>
-<ol class="centered-list">
+<h2 style="text-align:center; color:#2c3e50">Did you know?</h2><br>
+<ol class="centered-list" style="color:#2c3e50">
 <li> Honey never spoils — archaeologists found pots of it in ancient Egyptian tombs still perfectly edible.</li>
 <li>Bananas are berries, but strawberries aren't.</li>
 <li> The Eiffel Tower can grow over 6 inches taller in summer due to heat expansion.</li>

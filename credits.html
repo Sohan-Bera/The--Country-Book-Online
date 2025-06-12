@@ -3,95 +3,84 @@
 <head>
   <title>Home</title>
   <style>
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-      font-family: sans-serif;
-    }
+  * {
+    box-sizing: border-box;
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+  }
 
-    body {
-      background-image: url("earth-at-night.jpg"); 
-      background-size: cover;
-      background-position: center;
-      background-repeat: no-repeat;
-      background-attachment: fixed;
-      color: #fff;
-    }
+  body {
+    color: #333;
+    background-color:#e6f0ff ; /* soft light blue background */
+  }
 
-    .overlay {
-      background-color: rgba(0, 0, 0, 0.55);
-      min-height: 100vh;
-    }
+  header {
+    background-color: #1a8cff ;
+    color: #004aad; 
+    padding: 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items:center;
+    position: sticky;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+  }
 
-    .main-content {
-      padding-bottom: 40px;
-    }
+  .logo {
+    font-size: 32px;
+    font-weight: bold;
+    color: white;
+  }
 
-    header {
-      background-image: url("sohan2.png");
+  nav a {
+    margin: 0 17px;
+    color:white;
+    text-decoration: none;
+    font-weight: bold;
+    transition: color 0.2s ease;
+    font-size: 18px;
+  }
 
-      color: white;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      padding: 20px;
-    }
+  nav a:hover {
+    color: red ;
+  }
 
-    .logo {
-      color: white;
-      font-size: 34px;
-      font-weight: bold;
-      display: flex;
-      flex-direction: column;
-      line-height: 1.1;
-    }
+  .tagline {
+    font-size: 20px;
+    color: white;
+    margin-top: 4px;
+  }
 
-    .tagline {
-      font-size: 18px;
-      color: white;
-      margin-top: 4px;
-    }
+  .main-content {
+    background-color: #d9ccff;
+    padding-bottom: 40px;
+  }
 
-    nav a {
-      margin: 0 11px;
-      color: white;
-      text-decoration: none;
-      font-weight: bold;
-    }
+  section.hero {
+    padding: 40px 20px;
+    text-align: center;
+  }
 
-    nav a:hover {
-      color: white;
-    }
+  section.hero p {
+    color: #4a90e2;
+    font-size: 16px;
+    line-height: 1.6;
+  }
 
-    section.hero {
-      padding: 40px 20px;
-      text-align: center;
-    }
-
-    section.hero p {
-      color: #F5F5DC;
-      font-size: 18px;
-      line-height: 1.6;
-       text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.5);
-    }
-
-    .hero img {
-      max-width: 300px;
-      width: 100%;
-      margin: 20px auto;
-      display: block;
-    }
-
-    footer {
-      background-color: #ddd;
-      text-align: center;
-      padding: 10px;
-      margin-top: 20px;
-      color: #000;
-    }
-
-  </style>
+  .hero img {
+    max-width: 300px;
+    width: 100%;
+    margin: 20px auto;
+    display: block;
+  }
+  footer {
+    background-color: #9efaca;
+    text-align: center;
+    padding: 10px;
+    margin-top: 20px;
+    color: #333;
+  }
+      </style>
 </head>
 <body>
 
@@ -100,7 +89,7 @@
   <header>
     <div class="logo">
       <div class="logo-title">The Country Book</div>
-      <div class="tagline">One world, many nations</div>
+      <div class="tagline">One world many nations</div>
     </div>
     <nav>
       <a href="index.html">Home</a>
@@ -112,34 +101,24 @@
     </nav>
   </header>
   <section class="hero">
-    <h1 style="color:#f2e5ff">C r e d i t s</h1>
+    <h1 style="color:#ff1a86">C r e d i t s</h1><br>
 <br>
 
 <br><br><br><br>
-<center><marquee behavior="scroll" direction="up"bgcolor="" width="80%" scrollamount="5">
-<font face="Arial" color="white" size="4">
-
-<center><br>
-                 <b>DESIGNED AND DEVELOPED BY:</b>&nbsp;&nbsp;&nbsp;&nbsp;SOHAN BERA (ADMINISTRATOR)<br><br><br></right>
-                 <b>PROGRAMMING AND EXECUTION:</b> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;ADMINISTRATOR
-<br><br>
-                         <center><b>-----VISUAL AND CONTENTS-----<b></center>
-<br><br>
-                             WEBSITE PLANNING---- ADMINISTRATOR<br>
-                         TABLE AND FORMATIONS---- ADMINISTRATOR<br>
-                                 COUNTRY INFO---- Wikipedia, CIA World Factbook, UN, World Bank<br>
-              SPECIAL THANKS FOR COUNTRY INFO---- ChatGPT(OpenAI)<br>
-<br><br>
-                            <center><b>------ TOOLS ------</b></center>
-<br><br>
-                    CODE EDIT TOOLS ----- VISUAL STUDIO CODE & NOTEPAD<br><br>
-                           IMAGE TOOLS----- M.S COPILOT & GOOGLE<br><br>
-                    <center>IMAGE HOSTING IDEAS BY ADMINISTRATOR</center>
-<br><br>
-                                 EDITED BY SOHAN BERA<br><br>
-                                 AI ASSISTANT: ChatGPT(OpenAI)<br><br>
-                     SPECIAL THANKS TO NILIMA BERA & ChatGPT(OpenAI)<br><br>
-                       <b>&copy 2025 The Country Book. One world, many nations.</b>
+<center><marquee behavior="scroll" direction="up"bgcolor="#d9ccff" width="80%" scrollamount="5">
+<font face="Arial" color="#333333" size="4">
+<center>
+  Designed and Devloped by: Sohan Bera [The Country Book Administrator]<br><br>
+               Programming Startup: Sohan Bera<br><br>
+          Programming Helping Tool: ChatGPT(OpenAI)<br><br>
+                Code Edits: Sohan Bera<br><br>
+Special Thanks For Code Edits: ChatGPT(OpenAI)<br><br>
+          Image Source: Unsplash (Image used for display purpose only.)<br><br>
+          Country Info: ChatGPT and Google<br><br><br>
+             Edited by: Administrator<br><br>
+       Special thanks to ChatGPT <br><br>
+      &copy 2025 The Country Book. One world many nations.
+     
 </font>
         </marquee></center>
 <footer>
