@@ -16,15 +16,16 @@
       background-color: #f0f4ff;
     }
 
-    header {
+    header.top-header{
+      width: 100%;
       background-color: #004080;
       color: white;
       padding: 20px;
       display: flex;
-      justify-content: space-between;
       align-items: center;
       position: sticky;
       top: 0;
+      left: 0;
       box-shadow: 0 2px 6px rgba(0, 0, 0, 0.15);
       z-index: 1000;
     }
@@ -48,31 +49,32 @@
       font-size: 18px;
       color: white;
     }
-
-    nav {
-      display: flex;
-      flex-wrap: wrap;
-      justify-content: center;
-      gap: 10px;
+    .sidenav {
+      position: fixed;
+      top: 110px;
+      left: 0;
+      width: 25%;
+      height: calc(100%-110px);
+      background-color: #f1f1f1;
+      overflow-y: auto;
+      padding-top: 10px;
     }
-
-    nav a {
-      margin: 0 5px;
-      padding: 8px 16px;
-      background-color: #e6f0ff;
-      color: #002147;
+    .sidenav li{
+      list-style:none;
+    }
+   .sidenav a {
+      display: block;
+     padding: 12px 16px;
+      color: #000;
       text-decoration: none;
-      font-weight: bold;
-      border-radius: 6px;
-      border: 2px solid transparent;
-      transition: all 0.3s ease;
-      font-size: 16px;
-    }
-
-    nav a:hover {
-      background-color: #ff1a8c;
+      }
+.sidenav a.active{
+  background-color: #4CAF50;
+  color: white;
+}
+    .sidenav a:hover:not(.active) {
+      background-color: #555;
       color: white;
-      border-color: #ff1a8c;
     }
 
     .main-content {
@@ -81,18 +83,10 @@
       padding-bottom: 40px;
     }
 
-    section.hero {
+    .hero {
       padding: 30px 15px;
       text-align: center;
     }
-
-    section.hero p {
-      color: #333;
-      font-size: 16px;
-      line-height: 1.6;
-      margin-bottom: 20px;
-    }
-
     .hero img {
       max-width: 300px;
       width: 100%;
@@ -165,32 +159,35 @@
 </head>
 
 <body>
+  <header class="top-header">
+    <img src="The Country Book Logo.png" alt="Logo" class="logo-img">
+    <div>
+      <div class="logo-title">The Country Book</div>
+      <div class="tagline">An Incredible World</div>
+    </div>
+  </header>
+
+  <!-- Sidebar below header -->
+  <ul class="sidenav">
+    <li><a class="active" href="index.html">Home</a></li>
+    <li><a href="contrysite[a-m].html">Nationbox 1</a></li>
+    <li><a href="contrysite[n-z].html">Nationbox 2</a></li>
+    <li><a href="credits.html">Credits</a></li>
+    <li><a href="aboutus.html">About Us</a></li>
+    <li><a href="awonderfulworld.html">GlobeX</a></li>
+  </ul>
+
+  <!-- Main content beside sidebar -->
   <div class="main-content">
-    <header>
-      <div class="logo">
-        <img src="The Country Book Logo.png" alt="The Country Book Logo" class="logo-img">
-        <div>
-          <div class="logo-title">The Country Book</div>
-          <div class="tagline">An Incredible World</div>
-        </div>
-      </div>
-
-      <nav>
-        <a href="index.html">Home</a>
-        <a href="contrysite[a-m].html">Nationbox 1</a>
-        <a href="contrysite[n-z].html">Nationbox 2</a>
-        <a href="aboutus.html">About Us</a>
-        <a href="awonderfulworld.html">GlobeX</a>
-      </nav>
-    </header>
-
     <section class="hero">
       <div class="wonder-box glass">
-        <h1>Welcome to The Country Book</h1>
+        <h1>Credits</h1>
       </div>
+    </section>
 
-      <!-- Only display icons (no links) -->
-      <div class="social-icons">
+  
+      
+    <!-- Only display icons (no links) --        <div class="social-icons">
         <i class="fab fa-facebook-f"></i>
         <i class="fab fa-instagram"></i>
       </div>
@@ -233,3 +230,4 @@
   </footer>
 </body>
 </html>
+
