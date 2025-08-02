@@ -1,8 +1,7 @@
-
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-  <title>Home</title>
+  <title>Home - The Country Book</title>
   <style>
     * {
       box-sizing: border-box;
@@ -12,27 +11,23 @@
     }
 
     body {
-      color: #222;
       background-color: #f0f4ff;
+      color: #222;
     }
 
-    header.top-header{
+    /* Top Blue Header */
+    header.top-header {
       width: 100%;
       background-color: #004080;
       color: white;
       padding: 20px;
       display: flex;
       align-items: center;
-      position: sticky;
+      position: fixed;
       top: 0;
       left: 0;
-      box-shadow: 0 2px 6px rgba(0, 0, 0, 0.15);
       z-index: 1000;
-    }
-
-    .logo {
-      display: flex;
-      align-items: center;
+      box-shadow: 0 2px 6px rgba(0, 0, 0, 0.15);
     }
 
     .logo-img {
@@ -49,44 +44,53 @@
       font-size: 18px;
       color: white;
     }
+
+    /* Sidebar Navigation */
     .sidenav {
       position: fixed;
       top: 110px;
       left: 0;
       width: 25%;
-      height: calc(100%-110px);
+      height: calc(100vh - 110px);
       background-color: #f1f1f1;
       overflow-y: auto;
       padding-top: 10px;
     }
-    .sidenav li{
-      list-style:none;
+
+    .sidenav li {
+      list-style: none;
     }
-   .sidenav a {
+
+    .sidenav a {
       display: block;
-     padding: 12px 16px;
+      padding: 12px 16px;
       color: #000;
       text-decoration: none;
-      }
-.sidenav a.active{
-  background-color: #4CAF50;
-  color: white;
-}
+    }
+
+    .sidenav a.active {
+      background-color: #4CAF50;
+      color: white;
+    }
+
     .sidenav a:hover:not(.active) {
       background-color: #555;
       color: white;
     }
 
+    /* Main Content Area */
     .main-content {
-      background-color: #eef5ff;
+      margin-top: 110px;
+      margin-left: 25%;
       padding: 20px;
-      padding-bottom: 40px;
+      background-color: #eef5ff;
     }
 
     .hero {
-      padding: 30px 15px;
       text-align: center;
+      padding: 30px 15px;
     }
+
     .hero img {
       max-width: 300px;
       width: 100%;
@@ -132,7 +136,6 @@
       text-align: left;
       font-size: 17px;
       margin-top: 30px;
-      color: #222;
     }
 
     footer {
@@ -155,10 +158,12 @@
       margin: 0 10px;
     }
   </style>
+
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
 </head>
-
 <body>
+
+  <!-- Top Blue Header -->
   <header class="top-header">
     <img src="The Country Book Logo.png" alt="Logo" class="logo-img">
     <div>
@@ -167,7 +172,7 @@
     </div>
   </header>
 
-  <!-- Sidebar below header -->
+  <!-- Sidebar Menu -->
   <ul class="sidenav">
     <li><a class="active" href="index.html">Home</a></li>
     <li><a href="contrysite[a-m].html">Nationbox 1</a></li>
@@ -177,22 +182,21 @@
     <li><a href="awonderfulworld.html">GlobeX</a></li>
   </ul>
 
-  <!-- Main content beside sidebar -->
+  <!-- Main Content -->
   <div class="main-content">
     <section class="hero">
       <div class="wonder-box glass">
         <h1>Credits</h1>
       </div>
-    </section>
 
-  
-      
-    <!-- Only display icons (no links) --        <div class="social-icons">
+      <!-- Optional social icons -->
+      <div class="social-icons">
         <i class="fab fa-facebook-f"></i>
         <i class="fab fa-instagram"></i>
       </div>
 
       <img src="realistic country doodle 3.png" alt="the country book doodle" width="100%">
+
       <p>
         <i><b>Hello</b></i><br><br>
         <b>The Country Book</b> is a curated digital collection that brings the world into view one nation at a time. 
@@ -216,18 +220,18 @@
       </div>
 
       <h4>
-        <b>Explore. Discover. Learn.</b><br>
-        Use the blue navigation bar above, at the top of the page, and you will find <b>NationBoxes, Credits, About Us and Globex.</b> These will guide you to explore more of this website as they are functional.<br> Through the blue bar go to Nationboxes, meet the creator, or journey through the GlobeX just click on.<br>An incredible world in a simple website.
+        <b>Explore. Discover. Learn.</b><br><br>
+        Use the blue navigation bar above, at the top of the page, and you will find <b>NationBoxes, Credits, About Us and GlobeX</b>. These will guide you to explore more of this website as they are functional.<br>
+        Through the blue bar go to Nationboxes, meet the creator, or journey through the GlobeX — just click on.<br>
+        An incredible world in a simple website.
       </h4>
-      
     </section>
 
-
-  <footer>
-    &copy; 2025. <i>The Country Book.</i> An Incredible World. All rights reserved.<br>
-    <div style="text-align:center"> <a href="T&C.html"=style="color:#004080; font-weight: bold;">Terms and Conditions</a>
-</div>
-  </footer>
+    <!-- Footer -->
+    <footer>
+      &copy; 2025. <i>The Country Book.</i> An Incredible World. All rights reserved.<br><br>
+      <a href="T&C.html" style="color:#004080; font-weight: bold;">Terms and Conditions</a>
+    </footer>
+  </div>
 </body>
 </html>
-
