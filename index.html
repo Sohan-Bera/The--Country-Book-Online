@@ -3,7 +3,7 @@
 <head>
   <title>Home - The Country Book</title>
   <style>
-    * {
+   * {
       box-sizing: border-box;
       font-family: Arial, sans-serif;
       margin: 0;
@@ -11,23 +11,26 @@
     }
 
     body {
-      background-color: #f0f4ff;
       color: #222;
+      background-color: #f0f4ff;
     }
 
-    /* Top Blue Header */
-    header.top-header {
-      width: 100%;
+    header {
       background-color: #004080;
       color: white;
       padding: 20px;
       display: flex;
+      justify-content: space-between;
       align-items: center;
-      position: fixed;
+      position: sticky;
       top: 0;
-      left: 0;
-      z-index: 1000;
       box-shadow: 0 2px 6px rgba(0, 0, 0, 0.15);
+      z-index: 1000;
+    }
+
+    .logo {
+      display: flex;
+      align-items: center;
     }
 
     .logo-img {
@@ -45,51 +48,48 @@
       color: white;
     }
 
-    /* Sidebar Navigation */
-    .sidenav {
-      position: fixed;
-      top: 110px;
-      left: 0;
-      width: 15%;
-      height: calc(100vh - 110px);
-      background-color: #b8ffe3;
-      overflow-y: auto;
-      padding-top: 10px;
-      box-shadow: 0 2px 6px rgba(0, 0, 0, 0.15);
+    nav {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 10px;
     }
 
-    .sidenav li {
-      list-style: none;
-    }
-
-    .sidenav a {
-      display: block;
-      padding: 12px 16px;
-      color: #000;
+    nav a {
+      margin: 0 5px;
+      padding: 8px 16px;
+      background-color: #e6f0ff;
+      color: #002147;
       text-decoration: none;
+      font-weight: bold;
+      border-radius: 6px;
+      border: 2px solid transparent;
+      transition: all 0.3s ease;
+      font-size: 16px;
     }
 
-    .sidenav a.active {
-      background-color: ;
-      color: #004080;
-    }
-
-    .sidenav a:hover:not(.active) {
-      background-color: #555;
+    nav a:hover {
+      background-color: #ff1a8c;
       color: white;
+      border-color: #ff1a8c;
     }
 
-    /* Main Content Area */
     .main-content {
-      margin-top: 110px;
-      margin-left: 14%;
-      padding: 20px;
       background-color: #eef5ff;
+      padding: 20px;
+      padding-bottom: 40px;
     }
 
-    .hero {
-      text-align: center;
+    section.hero {
       padding: 30px 15px;
+      text-align: center;
+    }
+
+    section.hero p {
+      color: #333;
+      font-size: 17px;
+      line-height: 1.6;
+      margin-bottom: 20px;
     }
 
     .hero img {
@@ -137,6 +137,7 @@
       text-align: left;
       font-size: 17px;
       margin-top: 30px;
+      color: #222;
     }
 
     footer {
@@ -146,17 +147,6 @@
       margin-top: 40px;
       color: #222;
       font-size: 14px;
-    }
-
-    .social-icons {
-      margin-top: 10px;
-      margin-bottom: 30px;
-      font-size: 24px;
-      color: #333;
-    }
-
-    .social-icons i {
-      margin: 0 10px;
     }
   </style>
 
@@ -233,6 +223,7 @@
   </div>
 </body>
 </html>
+
 
 
 
