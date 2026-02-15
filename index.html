@@ -1,9 +1,9 @@
 <!DOCTYPE html>
 <html lang="en">
-  <!DOCTYPE html> <html lang="en"> <head> <title>Home - The Country Book</title>
-
+<head>
+  <title>Home - The Country Book</title>
   <style>
-    * {
+   * {
       box-sizing: border-box;
       font-family: Arial, sans-serif;
       margin: 0;
@@ -48,52 +48,30 @@
       color: white;
     }
 
-    /* ===== HAMBURGER MENU ===== */
-
-    .menu-container {
-      position: relative;
+    nav {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 10px;
     }
 
-    .hamburger {
-      font-size: 35px;
-      cursor: pointer;
-      user-select: none;
-    }
-
-    .dropdown-menu {
-      position: absolute;
-      right: 0;
-      top: 80px;
-      background-color: #ffffff;
-      min-width: 320px;
-      border-radius: 8px;
-      box-shadow: 0 6px 15px rgba(0,0,0,0.2);
-      overflow: hidden;
-
-      transform: translateX(100%);
-      opacity: 0;
-      visibility: hidden;
-      transition: transform 0.35s ease, opacity 0.3s ease, visibility 0.3s ease;
-    }
-
-    .dropdown-menu.active {
-      transform: translateX(0);
-      opacity: 1;
-      visibility: visible;
-    }
-
-    .dropdown-menu a {
-      display: block;
-      padding: 12px 18px;
-      text-decoration: none;
+    nav a {
+      margin: 0 5px;
+      padding: 8px 16px;
+      background-color: #e6f0ff;
       color: #002147;
+      text-decoration: none;
       font-weight: bold;
-      transition: 0.2s;
+      border-radius: 6px;
+      border: 2px solid transparent;
+      transition: all 0.3s ease;
+      font-size: 16px;
     }
 
-    .dropdown-menu a:hover {
+    nav a:hover {
       background-color: #ff1a8c;
       color: white;
+      border-color: #ff1a8c;
     }
 
     .main-content {
@@ -171,91 +149,82 @@
       font-size: 14px;
     }
   </style>
-</head>
 
-<body>
-
-<header>
-  <div class="logo">
-    <img src="The Country Book Logo.png" alt="The Country Book Logo" class="logo-img">
-    <div>
-      <div class="logo-title">The Country Book</div>
-      <div class="tagline">An Incredible World</div>
-    </div>
-  </div>
-
-  <div class="menu-container">
-    <div class="hamburger" onclick="toggleMenu()">☰</div>
-    <div class="dropdown-menu" id="menu">
-      <a href="index.html">Home</a>
-      <a href="contrysite[a-m].html">Nationbox 1</a>
-      <a href="contrysite[n-z].html">Nationbox 2</a>
-      <a href="aboutus.html">About Us</a>
-      <a href="awonderfulworld.html">GlobeX</a>
-    </div>
-  </div>
+ <body>
+  <div class="main-content">
+    <header>
+      <div class="logo">
+        <img src="The Country Book Logo.png" alt="The Country Book Logo" class="logo-img">
+        <div>
+          <div class="logo-title">The Country Book</div>
+          <div class="tagline">An Incredible World</div>
+        </div>
+      </div>
+<nav><!-- Sidebar Menu -->
+  
+    <a href="index.html">Home</a>
+    <a href="contrysite[a-m].html">Nationbox 1</a>
+    <a href="contrysite[n-z].html">Nationbox 2</a>
+    <a href="aboutus.html">About Us</a>
+    <a href="awonderfulworld.html">GlobeX</a>
+</nav>
 </header>
+  <!-- Main Content -->
+  <div class="main-content">
+    <section class="hero">
+      <div class="wonder-box glass">
+        <h1>Welcome to The Country Book</h1>
+      </div>
 
-<div class="main-content">
-  <section class="hero">
+      <img src="realistic country doodle 3.png" alt="the country book doodle" width="100%">
 
-    <div class="wonder-box glass">
-      <h1>Welcome to The Country Book</h1>
-    </div>
-
-    <img src="realistic country doodle 3.png" alt="the country book doodle">
-
-    <p>
-      <i><b>Hello</b></i><br><br>
-      <b>The Country Book</b> is a curated digital collection that brings the world into view one nation at a time. 
-      Organized with clarity and crafted for curiosity, each entry offers a brief yet meaningful glimpse into a country's identity, 
-      from its capital and population to iconic dishes. This book is your simple yet structured window into the diversity of our world.
-    </p>
-
-    <p>
-      You can find every country in alphabetical order in the next pages.<br>
-      Every country is listed in table format along with their name, capital, famous food, and population, 
-      which will help you find them quickly in one place.
-    </p>
-
-    <div class="wonder-box">
-      <h2>United Nations (UN)</h2>
       <p>
-        The United Nations (UN) is an intergovernmental organization established on October 24, 1945, after the end of World War II.
-        It was created to promote global peace, security, and cooperation among countries.
+        <i><b>Hello</b></i><br><br>
+        <b>The Country Book</b> is a curated digital collection that brings the world into view one nation at a time. 
+        Organized with clarity and crafted for curiosity, each entry offers a brief yet meaningful glimpse into a country's identity, 
+        from its capital and population to iconic dishes. This book is your simple yet structured window into the diversity of our world.
       </p>
-    </div>
 
-    <h4>
-      <b>Explore. Discover. Learn.</b><br><br>
-      Use the hamburger menu. That will guide you to explore more of this website as they are functional.
-    </h4>
+      <p>
+        You can find every country in alphabetical order in the next pages.<br>
+        Every country is listed in table format along with their name, capital, famous food, and population, 
+        which will help you find them quickly in one place.
+      </p>
 
-  </section>
+      <div class="wonder-box">
+        <h2>United Nations (UN)</h2>
+        <p>
+          The United Nations (UN) is an intergovernmental organization established on October 24, 1945, after the end of World War II.
+          It was created to promote global peace, security, and cooperation among countries, making it nearly universal in its membership.<br><br>
+          The UN works to maintain international peace and security, protect human rights, support sustainable development, provide humanitarian aid, and uphold international law.
+        </p>
+      </div>
 
-  <footer>
-    &copy; 2026. <i>The Country Book.</i> An Incredible World. All rights reserved.<br><br>
-    <a href="T&C.html" style="color:#004080; font-weight: bold;">Terms and Conditions</a>
-  </footer>
-</div>
-
-<script>
-function toggleMenu() {
-  document.getElementById("menu").classList.toggle("active");
-}
-
-document.addEventListener("click", function(event) {
-  const menu = document.getElementById("menu");
-  const hamburger = document.querySelector(".hamburger");
-
-  if (!menu.contains(event.target) && !hamburger.contains(event.target)) {
-    menu.classList.remove("active");
-  }
-});
-</script>
-
+      <h4>
+        <b>Explore. Discover. Learn.</b><br><br>
+        Use the blue navigation bar above, at the top of the page, and you will find <b>NationBoxes, Credits, About Us and GlobeX</b>. These will guide you to explore more of this website as they are functional.<br>
+        Through the blue bar go to Nationboxes, meet the creator, or journey through the GlobeX — just click on.<br>
+        An incredible world in a simple website.
+      </h4>
+    
+ <div class="social-icons">
+        <i class="fab fa-facebook-f"></i>
+        <i class="fab fa-instagram"></i>
+      </div>
+    </section>
+    <!-- Footer -->
+    <footer>
+      &copy; 2025. <i>The Country Book.</i> An Incredible World. All rights reserved.<br><br>
+      <a href="T&C.html" style="color:#004080; font-weight: bold;">Terms and Conditions</a>
+    </footer>
+  </div>
 </body>
 </html>
+
+
+
+
+
 
 
 
