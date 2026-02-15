@@ -55,30 +55,39 @@
     }
 
     .hamburger {
-      font-size: 28px;
+      font-size: 35px;
       cursor: pointer;
       user-select: none;
     }
 
     .dropdown-menu {
-      display: none;
       position: absolute;
       right: 0;
-      top: 50px;
+      top: 65px;
       background-color: #ffffff;
-      min-width: 220px;
+      min-width: 320px;
       border-radius: 8px;
       box-shadow: 0 6px 15px rgba(0,0,0,0.2);
       overflow: hidden;
+      /*==== NEW ANIMATION SETUP ====*/ 
+      transform: translateX(100%)
+      opacity: 0;
+      transition: transform 0.35s ease, opacity 0.3s ease;
     }
 
+    .dropdown-menu.active{
+      transform: translateX(0);
+      opacity: 1;
+    }
+
+    
     .dropdown-menu a {
       display: block;
       padding: 12px 18px;
       text-decoration: none;
       color: #002147;
       font-weight: bold;
-      transition: 0.3s;
+      transition: 0.2s;
     }
 
     .dropdown-menu a:hover {
@@ -242,14 +251,10 @@
 
 <script>
 function toggleMenu() {
-  var menu = document.getElementById("menu");
-  if (menu.style.display === "block") {
-    menu.style.display = "none";
-  } else {
-    menu.style.display = "block";
-  }
+   document.getElementById("menu").classList.toggle("active");
 }
 </script>
 
 </body>
 </html>
+
