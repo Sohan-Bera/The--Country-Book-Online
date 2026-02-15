@@ -1,9 +1,11 @@
-
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-  <title>The Country Book - World List</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Nationbox 2 (N-Z) - The Country Book</title>
   <style>
+    /* --- RESET & BASICS --- */
     * {
       box-sizing: border-box;
       font-family: Arial, sans-serif;
@@ -14,12 +16,14 @@
     body {
       color: #222;
       background-color: #f0f4ff;
+      overflow-x: hidden;
     }
 
+    /* --- HEADER --- */
     header {
       background-color: #004080;
       color: white;
-      padding: 20px;
+      padding: 15px 20px;
       display: flex;
       justify-content: space-between;
       align-items: center;
@@ -35,912 +39,392 @@
     }
 
     .logo-img {
-      height: 70px;
-      margin-right: 10px;
+      height: 60px;
+      margin-right: 12px;
     }
 
     .logo-title {
-      font-size: 32px;
+      font-size: 24px;
       font-weight: bold;
     }
 
     .tagline {
-      font-size: 18px;
+      font-size: 14px;
+      color: #e0e0e0;
+    }
+
+    /* --- HAMBURGER MENU --- */
+    .menu-container {
+      position: relative;
+    }
+
+    .hamburger-icon {
+      font-size: 30px;
+      cursor: pointer;
       color: white;
+      padding: 5px;
+      user-select: none;
     }
 
-    nav {
-      display: flex;
-      flex-wrap: wrap;
-      justify-content: center;
-      gap: 10px;
+    .dropdown-content {
+      display: none;
+      position: absolute;
+      right: 0;
+      top: 50px;
+      background-color: white;
+      min-width: 200px;
+      box-shadow: 0 8px 16px rgba(0,0,0,0.2);
+      border-radius: 8px;
+      overflow: hidden;
+      z-index: 1001;
     }
 
-    nav a {
-      margin: 0 5px;
-      padding: 8px 16px;
-      background-color: #e6f0ff;
+    .dropdown-content a {
       color: #002147;
+      padding: 14px 18px;
       text-decoration: none;
+      display: block;
       font-weight: bold;
-      border-radius: 6px;
-      border: 2px solid transparent;
-      transition: all 0.3s ease;
-      font-size: 16px;
+      border-bottom: 1px solid #f0f0f0;
     }
 
-    nav a:hover {
+    .dropdown-content a:hover {
       background-color: #ff1a8c;
       color: white;
-      border-color: #ff1a8c;
     }
 
+    .show { display: block; }
+
+    /* --- CONTENT LAYOUT --- */
     .main-content {
-      background-color: #eef5ff;
       padding: 20px;
-    }
-
-    section.hero {
-      padding: 30px 15px;
-      text-align: center;
-    }
-
-    section.hero p {
-      color: #333;
-      font-size: 17px;
-      line-height: 1.6;
-      margin-bottom: 20px;
-    }
-
-    .hero img {
-      max-width: 300px;
-      width: 100%;
-      margin: 20px auto;
-      display: block;
+      max-width: 1000px;
+      margin: 0 auto;
     }
 
     .wonder-box.glass {
       backdrop-filter: blur(8px);
-      background: rgba(255, 255, 255, 0.3);
-      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
-      border: 4px solid #c9c9ff;
+      background: rgba(255, 255, 255, 0.6);
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+      border: 2px solid #c9c9ff;
       border-radius: 10px;
-      padding: 10px;
-      margin: 10px auto;
-      color: #2a003f;
-    }
-
-    .wonder-box p {
-      font-size: 15px;
-      text-align: center;
-      margin-top: 5px;
-    }
-
-    .table-section {
-      width: 100%;
       padding: 20px;
-      background-color: #eef5ff;
-      border-radius: 8px;
+      text-align: center;
+      margin-bottom: 20px;
+    }
+
+    .letter-summary {
+      font-weight: bold;
+      color: #004080;
+      font-size: 14px;
+      line-height: 2;
+    }
+
+    /* --- TABLE STYLES --- */
+    h2 {
+      background-color: #003366;
+      color: white;
+      padding: 12px;
+      text-align: center;
+      border-radius: 8px 8px 0 0;
+      margin-top: 40px;
+      font-size: 22px;
+    }
+
+    .table-container {
+      width: 100%;
       overflow-x: auto;
+      background: white;
+      border-radius: 0 0 8px 8px;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.05);
+      margin-bottom: 20px;
     }
 
     table {
       width: 100%;
-      main-width: 700px;
       border-collapse: collapse;
-      background-color: white;
-      border-radius: 6px;
-      
+      min-width: 700px;
     }
 
     th, td {
-      border: 3px solid #ccd;
-      padding: 12px;
+      border: 1px solid #dee2e6;
+      padding: 12px 15px;
       text-align: left;
-      vertical-align: middle;
-      font-size: 17px;
+      font-size: 15px;
     }
 
     th {
-      background-color: #003366;
-      color: white;
+      background-color: #f8f9fa;
+      color: #003366;
+      text-transform: uppercase;
+      font-size: 13px;
+      letter-spacing: 0.5px;
     }
 
-    tr:nth-child(even) {
-      background-color: #f4f9ff;
-    }
-
-    tr:hover {
-      background-color: #d9ecff;
-    }
-
+    tr:nth-child(even) { background-color: #f9fbff; }
+    tr:hover { background-color: #f1f4ff; }
+    
     .flag-icon {
-      width: 60px;
-      height: 36px;
+      width: 40px;
+      height: 25px;
       object-fit: cover;
       margin-right: 10px;
       vertical-align: middle;
       border-radius: 3px;
-      box-shadow: 0 0 2px rgba(0, 0, 0, 0.15);
     }
 
-    h2 {
-      color: #003366;
-      margin: 30px 0 10px;
-      text-align: center;
+    .highlight-red {
+      color: #d00000;
+      font-weight: bold;
     }
 
+    /* --- FOOTER --- */
     footer {
       background-color: #b8ffe3;
       text-align: center;
       padding: 30px;
-      margin-top: 40px;
-      color: #222;
+      margin-top: 50px;
       font-size: 14px;
+    }
+
+    footer a {
+      color: #004080;
+      text-decoration: none;
+      font-weight: bold;
     }
   </style>
 </head>
-
 <body>
-  <div class="main-content">
-    <header>
-      <div class="logo">
-        <img src="The Country Book Logo.png" alt="The Country Book Logo" class="logo-img">
-        <div>
-          <div class="logo-title">The Country Book</div>
-          <div class="tagline">An Incredible World</div>
-        </div>
+
+  <header>
+    <div class="logo">
+      <img src="The Country Book Logo.png" alt="Logo" class="logo-img">
+      <div>
+        <div class="logo-title">The Country Book</div>
+        <div class="tagline">An Incredible World</div>
       </div>
-      <nav>
+    </div>
+    
+    <div class="menu-container">
+      <div class="hamburger-icon" onclick="toggleMenu()">&#9776;</div>
+      <div id="myDropdown" class="dropdown-content">
         <a href="index.html">Home</a>
         <a href="contrysite[a-m].html">Nationbox 1</a>
         <a href="contrysite[n-z].html">Nationbox 2</a>
         <a href="aboutus.html">About Us</a>
         <a href="awonderfulworld.html">GlobeX</a>
-      </nav>
-    </header>
-
-    <section class="hero">
-      <div class="wonder-box glass">
-        <h1 style="font-size:28px;"><center>Nationbox part 1</center></h1>
-      </div><br>
-
-      <p>
-        NationBoxes contain country names along with their basic info like capitals, famous foods, and populations.<br>
-        Organized alphabetically. Each letter shows the total number of countries starting with it.
-      </p><br>
-
-      <div class="wonder-box glass">
-        <p>[N-11] . [O-1] . [P-10] . [Q-1] . [R-3] . [S-27] . [T-11] . [U-7] . [V-4] . [W-1] . [Y-1] . [Z-2]</p>
       </div>
+    </div>
+  </header>
 
-      <marquee behavior="scroll" direction="left" bgcolor="#eef5ff" width="100%" scrollamount="8">
-        <font face="Courier" color="black" size="4">
-          This list follows the UN-recognized 193 countries + a few common exceptions. This list is for general educational purposes only.
-        </font>
-      </marquee>
-    </section>
+  <div class="main-content">
+    <div class="wonder-box glass">
+      <h1 style="color:#004080; font-size: 28px;">Nationbox 2 (N-Z)</h1>
+      <p style="margin-top: 10px; font-size: 16px;">
+        Explore country names, capitals, famous foods, and population data.
+      </p>
+    </div>
 
-    <h2 style="color:#0066ff;">N - 11</h2>
+    <div class="wonder-box glass">
+      <div class="letter-summary">
+        [N-11] • [O-1] • [P-11] • [Q-1] • [R-3] • [S-27] • [T-11] • [U-7] • [V-4] • [W-1] • [Y-1] • [Z-2]
+      </div>
+    </div>
 
-    <div class="table-section">
+    <marquee scrollamount="6" style="background: #ffffff; padding: 10px; border-radius: 8px; border: 1px solid #c9c9ff; margin-bottom: 20px;">
+      This list follows the UN recognized countries. Population data is based on 2025/2026 estimates.
+    </marquee>
+
+    <h2>N - 11</h2>
+    <div class="table-container">
       <table>
-        <tr>
-          <th>Country</th>
-          <th>Capital</th>
-          <th>Famous Food</th>
-          <th>Population</th>
-          <th>Official Language</th>
-        </tr>
-        <tr>
-          <td><img src="namibia.png" class="flag-icon">Namibia</td>
-          <td>Windhoek</td>
-          <td>Kapana</td>
-          <td>~3.1 million</td>
-          <td>English</td>
-        </tr>
-        <tr>
-<td><img src="nauru.png" class="flag-icon">Nauru</td>
-<td>Yaren</td>
-<td>Coconut Fish</td>
-<td>12,000</td>
-<td>Nauruan, English</td>
-</tr>
-<tr>
-<td><img src="nepal.png" class="flag-icon">Nepal</td>
-<td>Kathmandu</td>
-<td>Momo</td>
-<td>~29.6 million</td>
-<td>Nepali</td>
-</tr>
-<tr>
-<td><img src="netherlands.png" class="flag-icon">Netherlands</td>
-<td>Amsterdam</td>
-<td>Stroopwafel</td>
-<td>~18.3 million</td>
-<td>Dutch</td>
-</tr>
-<tr>
-<td><img src="newzealand.png" class="flag-icon">New Zealand</td>
-<td>Wellington</td>
-<td>Hangi</td>
-<td>~5.3 million</td>
-<td>English, Maori, NZ Sign Language</td>
-</tr>
-<tr>
-<td><img src="nicaragua.png" class="flag-icon">Nicaragua</td>
-<td>Managua</td>
-<td>Gallo Pinto</td>
-<td>~7 million</td>
-<td>Spanish</td>
-</tr>
-<tr>
-<td><img src="niger.png" class="flag-icon">Niger</td>
-<td>Niamey</td>
-<td>Jollof Rice</td>
-<td>~27.9 million</td>
-<td>French</td>
-</tr>
-<tr>
-<td><img src="nigeria.png" class="flag-icon">Nigeria</td>
-<td>Abuja</td>
-<td>Egusi Soup</td>
-<td>~237.5 million</td>
-<td>English</td>
-</tr>
-<tr>
-<td><img src="north korea.png" class="flag-icon">North Korea</td>
-<td>Pyongyang</td>
-<td>Kimchi</td>
-<td>~26.6 million</td>
-<td>Korean</td>
-</tr>
-<tr>
-<td><img src="north macedonia.png" class="flag-icon">North Macedonia</td>
-<td>Skopje</td>
-<td>Tavče Gravče</td>
-<td>~1.8 million</td>
-<td>Macedonian, Albanian (regional)</td>
-</tr>
-<tr>
-<td><img src="norway.png" class="flag-icon">Norway</td>
-<td>Oslo</td>
-<td>Rakfisk</td>
-<td>~5.6 million</td>
-<td>Norwegian (Bokmal and Nynorsk)</td>
-</tr>
-</table>
-<br>
-<h2 style="color:#0066ff; text-align:center">O - 1</h2>
-<div class="table-section">
-  <table>
-<tr>
-      <th>Country</th>
-      <th>Capital</th>
-      <th>Famous Food</th>
-      <th>Population</th>
-      <th>Official Language</th>
-    </tr>
-<tr>
-<td><img src="oman.png" class="flag-icon">Oman</td>
-<td>Muscat</td>
-<td>Shuwa</td>
-<td>~5.5 million</td>
-<td>Arabic</td>
-</tr>
-</table><br>
-<h2 style="color:#0066ff; text-align:center">P - 11</h2>
-<div class="table-section">
-  <table>
-<tr>
-      <th>Country</th>
-      <th>Capital</th>
-      <th>Famous Food</th>
-      <th>Population</th>
-      <th>Official Language</th>
-    </tr>
+        <tr><th>Country</th><th>Capital</th><th>Famous Food</th><th>Population</th><th>Official Language</th></tr>
+        <tr><td><img src="namibia.png" class="flag-icon"> Namibia</td><td>Windhoek</td><td>Kapana</td><td>~3.1M</td><td>English</td></tr>
+        <tr><td><img src="nauru.png" class="flag-icon"> Nauru</td><td>Yaren</td><td>Coconut Fish</td><td>~12,000</td><td>Nauruan, English</td></tr>
+        <tr><td><img src="nepal.png" class="flag-icon"> Nepal</td><td>Kathmandu</td><td>Momo</td><td>~29.6M</td><td>Nepali</td></tr>
+        <tr><td><img src="netherlands.png" class="flag-icon"> Netherlands</td><td>Amsterdam</td><td>Stroopwafel</td><td>~18.3M</td><td>Dutch</td></tr>
+        <tr><td><img src="newzealand.png" class="flag-icon"> New Zealand</td><td>Wellington</td><td>Hangi</td><td>~5.3M</td><td>English, Maori</td></tr>
+        <tr><td><img src="nicaragua.png" class="flag-icon"> Nicaragua</td><td>Managua</td><td>Gallo Pinto</td><td>~7M</td><td>Spanish</td></tr>
+        <tr><td><img src="niger.png" class="flag-icon"> Niger</td><td>Niamey</td><td>Jollof Rice</td><td>~27.9M</td><td>French</td></tr>
+        <tr><td><img src="nigeria.png" class="flag-icon"> Nigeria</td><td>Abuja</td><td>Egusi Soup</td><td>~237.5M</td><td>English</td></tr>
+        <tr><td><img src="north korea.png" class="flag-icon"> North Korea</td><td>Pyongyang</td><td>Kimchi</td><td>~26.6M</td><td>Korean</td></tr>
+        <tr><td><img src="north macedonia.png" class="flag-icon"> North Macedonia</td><td>Skopje</td><td>Tavče Gravče</td><td>~1.8M</td><td>Macedonian</td></tr>
+        <tr><td><img src="norway.png" class="flag-icon"> Norway</td><td>Oslo</td><td>Rakfisk</td><td>~5.6M</td><td>Norwegian</td></tr>
+      </table>
+    </div>
 
-<tr>
-<td><img src="pak.png" class="flag-icon">Pakistan</td>
-<td>Islamabad</td>
-<td>Nihari</td>
-<td>~255.2 million</td>
-<td>Urdu, English</td>
-</tr>
-<tr>
-<td><img src="palua.png" class="flag-icon">Palau</td>
-<td>Ngerulmud</td>
-<td>Tinola</td>
-<td>~17,000</td>
-<td>Palauan, English</td>
+    <h2>O - 1</h2>
+    <div class="table-container">
+      <table>
+        <tr><th>Country</th><th>Capital</th><th>Famous Food</th><th>Population</th><th>Official Language</th></tr>
+        <tr><td><img src="oman.png" class="flag-icon"> Oman</td><td>Muscat</td><td>Shuwa</td><td>~5.5M</td><td>Arabic</td></tr>
+      </table>
+    </div>
 
-</tr>
-<tr>
-<td><img src="palestine.png" class="flag-icon">Palestine State</td>
-<td>Ramallah</td>
-<td>Musakhan</td>
-<td>~5.6 million</td>
-<td>Arabic</td>
-</tr>
-<tr>
-<td><img src="panama.png" class="flag-icon">Panama</td>
-<td>Panama City</td>
-<td>Sancocho</td>
-<td>~4.6 million</td>
-<td>Spanish</td>
-</tr>
-<tr>
-<td><img src="papuanew.png" class="flag-icon">Papua New Guinea</td>
-<td>Port Moresby</td>
-<td>Mumu</td>
-<td>~10.8 million</td>
-<td>English, Tok Pisin, Hiri Motu</td>
-</tr>
-<tr>
-<td><img src="paraguay.png" class="flag-icon">Paraguay</td>
-<td>Asunción</td>
-<td>Sopa Paraguaya</td>
-<td>~7 million</td>
-<td>Spanish & Guarani</td>
-</tr>
-<tr>
-<td><img src="peru.png" class="flag-icon">Peru</td>
-<td>Lima</td>
-<td>Ceviche</td>
-<td>~34.6 million</td>
-<td>Spanish, Quechua, Aymara</td>
-</tr>
-<tr>
-<td><img src="philipines.png" class="flag-icon">Philippines</td>
-<td>Manila</td>
-<td>Adobo</td>
-<td>~116.8 million</td>
-<td>Filipino, English</td>
-</tr>
-<tr>
-<td><img src="poland.png" class="flag-icon">Poland</td>
-<td>Warsaw</td>
-<td>Pierogi</td>
-<td>~38.1 million</td>
-<td>Polish</td>
-</tr>
-<tr>
-<td><img src="portugal.png" class="flag-icon">Portugal</td>
-<td>Lisbon</td>
-<td>Bacalhau</td>
-<td>~10.4 million</td>
-<td>Portuguese</td>
-</tr>
-<td><img src="puerto rico.png" class="flag-icon">Puerto Rico</td>
-<td>San Juan</td>
-<td>Arroz con Gandules (rice with pigeon peas)</td>
-<td>~3.2 million</td>
-<td>Spanish & English</td>
-</tr>
-</table><br>
-<h2 style="color:#0066ff; text-align:center">Q - 1</h2>
-<div class="table-section">
-  <table>
-<tr>
-      <th>Country</th>
-      <th>Capital</th>
-      <th>Famous Food</th>
-      <th>Population</th>
-      <th>Official Language</th>
-    </tr>
+    <h2>P - 11</h2>
+    <div class="table-container">
+      <table>
+        <tr><th>Country</th><th>Capital</th><th>Famous Food</th><th>Population</th><th>Official Language</th></tr>
+        <tr><td><img src="pak.png" class="flag-icon"> Pakistan</td><td>Islamabad</td><td>Nihari</td><td>~255.2M</td><td>Urdu, English</td></tr>
+        <tr><td><img src="palua.png" class="flag-icon"> Palau</td><td>Ngerulmud</td><td>Tinola</td><td>~17,000</td><td>Palauan, English</td></tr>
+        <tr><td><img src="palestine.png" class="flag-icon"> Palestine State</td><td>Ramallah</td><td>Musakhan</td><td>~5.6M</td><td>Arabic</td></tr>
+        <tr><td><img src="panama.png" class="flag-icon"> Panama</td><td>Panama City</td><td>Sancocho</td><td>~4.6M</td><td>Spanish</td></tr>
+        <tr><td><img src="papuanew.png" class="flag-icon"> Papua New Guinea</td><td>Port Moresby</td><td>Mumu</td><td>~10.8M</td><td>English, Tok Pisin</td></tr>
+        <tr><td><img src="paraguay.png" class="flag-icon"> Paraguay</td><td>Asunción</td><td>Sopa Paraguaya</td><td>~7M</td><td>Spanish & Guarani</td></tr>
+        <tr><td><img src="peru.png" class="flag-icon"> Peru</td><td>Lima</td><td>Ceviche</td><td>~34.6M</td><td>Spanish, Quechua</td></tr>
+        <tr><td><img src="philipines.png" class="flag-icon"> Philippines</td><td>Manila</td><td>Adobo</td><td>~116.8M</td><td>Filipino, English</td></tr>
+        <tr><td><img src="poland.png" class="flag-icon"> Poland</td><td>Warsaw</td><td>Pierogi</td><td>~38.1M</td><td>Polish</td></tr>
+        <tr><td><img src="portugal.png" class="flag-icon"> Portugal</td><td>Lisbon</td><td>Bacalhau</td><td>~10.4M</td><td>Portuguese</td></tr>
+        <tr><td><img src="puerto rico.png" class="flag-icon"> Puerto Rico</td><td>San Juan</td><td>Arroz con Gandules</td><td>~3.2M</td><td>Spanish & English</td></tr>
+      </table>
+    </div>
 
-<tr>
-<td><img src="quatar.png" class="flag-icon">Qatar</td>
-<td>Doha</td>
-<td>Machboos</td>
-<td>~3.1 million</td>
-<td>Arabic</td>
-</tr>
-</table><br>
-<h2 style="color:#0066ff; text-align:center">R - 3</h2>
-<div class="table-section">
-  <table>
-<tr>
-      <th>Country</th>
-      <th>Capital</th>
-      <th>Famous Food</th>
-      <th>Population</th>
-      <th>Official Language</th>
-    </tr>
+    <h2>Q - 1</h2>
+    <div class="table-container">
+      <table>
+        <tr><th>Country</th><th>Capital</th><th>Famous Food</th><th>Population</th><th>Official Language</th></tr>
+        <tr><td><img src="quatar.png" class="flag-icon"> Qatar</td><td>Doha</td><td>Machboos</td><td>~3.1M</td><td>Arabic</td></tr>
+      </table>
+    </div>
 
-<tr>
-<td><img src="romania.png" class="flag-icon">Romania</td>
-<td>Bucharest</td>
-<td>Sarmale</td>
-<td>~18.9 million</td>
-<td>Romanian</td>
-</tr>
-<tr style="color:red">
-<td><img src="russia.png" class="flag-icon">Union of Soviet Socialist Republic (U.S.S.R) Russia</td>
-<td>Moscow</td>
-<td>Borscht</td>
-<td>~144 million</td>
-<td>Russian</td>
-</tr>
-<tr>
-<td><img src="rwanda.png" class="flag-icon">Rwanda</td>
-<td>Kigali</td>
-<td>Ugali</td>
-<td>~14.6 million</td>
-<td>Kinyarwanda, French, English</td>
-</tr>
-</table>
-<br>
-<h2 style="color:#0066ff; text-align:center">S - 27</h2>
-<div class="table-section">
-  <table>
-<tr>
-      <th>Country</th>
-      <th>Capital</th>
-      <th>Famous Food</th>
-      <th>Population</th>
-      <th>Official Language</td>
-    </tr>
+    <h2>R - 3</h2>
+    <div class="table-container">
+      <table>
+        <tr><th>Country</th><th>Capital</th><th>Famous Food</th><th>Population</th><th>Official Language</th></tr>
+        <tr><td><img src="romania.png" class="flag-icon"> Romania</td><td>Bucharest</td><td>Sarmale</td><td>~18.9M</td><td>Romanian</td></tr>
+        <tr class="highlight-red"><td><img src="russia.png" class="flag-icon"> Russia (U.S.S.R)</td><td>Moscow</td><td>Borscht</td><td>~144M</td><td>Russian</td></tr>
+        <tr><td><img src="rwanda.png" class="flag-icon"> Rwanda</td><td>Kigali</td><td>Ugali</td><td>~14.6M</td><td>Kinyarwanda</td></tr>
+      </table>
+    </div>
 
-<tr>
-<td><img src="saintkitts.png" class="flag-icon">Saint Kitts and Nevis</td>
-<td>Basseterre</td>
-<td>Goat Water</td>
-<td>47,000</td>
-<td>English</td>
-</tr>
-<tr>
-<td><img src="saintlucia.png" class="flag-icon">Saint Lucia</td>
-<td>Castries</td>
-<td>Green Fig and Saltfish</td>
-<td>180,000</td>
-<td>English</td>
-</tr>
-<tr>
-<td><img src="saint vincent and Grenadines.png" class="flag-icon"><br>Saint Vincent and the Grenadines</td>
-<td>Kingstown</td>
-<td>Roasted Breadfruit and Fried Jackfish</td>
-<td>~100,000</td>
-<td>English</td>
-</tr>
-<tr>
-<td><img src="samoa.png" class="flag-icon">Samoa</td>
-<td>Apia</td>
-<td>Oka</td>
-<td>~219,000</td>
-<td>Samoan, English</td>
-</tr>
-<tr>
-<td><img src="san marino.png" class="flag-icon">San Marino</td>
-<td>San Marino</td>
-<td>Torta Tre Monti</td>
-<td>34,000</td>
-<td>Italian</td>
-</tr>
-<tr>
-<td><img src="sao tome.png" class="flag-icon">Sao Tome and Principe</td>
-<td>São Tomé</td>
-<td>Calulu</td>
-<td>~240,000</td>
-<td>Portuguese</td>
-</tr>
-<tr>
-<td><img src="saudi.png" class="flag-icon">Saudi Arabia</td>
-<td>Riyadh</td>
-<td>Kabsa</td>
-<td>~34.6 million</td>
-<td>Arabic</td>
-</tr>
-<tr>
-<td><img src="scot.png" class="flag-icon">Scotland</td>
-<td>Edinburgh</td>
-<td>Haggis</td>
-<td>~5.49 million</td>
-<td>English</td>
-</tr>
-<tr>
-<td><img src="senegal.png" class="flag-icon">Senegal</td>
-<td>Dakar</td>
-<td>Thieboudienne</td>
-<td>~18.9 million</td>
-<td>French</td>
-</tr>
-<tr>
-<td><img src="serbia.png" class="flag-icon">Serbia</td>
-<td>Belgrade</td>
-<td>Ćevapi</td>
-<td>~6.7 million</td>
-<td>Serbian</td>
-</tr>
-<tr>
-<td><img src="sayc.png" class="flag-icon">Seychelles</td>
-<td>Victoria</td>
-<td>Ladob</td>
-<td>133,000</td>
-<td>Seychellois Creo French, English</td>
-</tr>
-<tr style="color:red">
-<td><img src="spain.png" class="flag-icon">Spain</td>
-<td>Madrid</td>
-<td>Paella, Tapas</td>
-<td>~47 million</td>
-<td>Spanish</td>
-</tr>
-<tr style="color:red">
-<td><img src="southkorea.png" class="flag-icon">South Korea</td>
-<td>Seoul</td>
-<td>Kimchi, Bulgogi</td>
-<td>~51 million</td>
-<td>Korean</td>
-</tr>
-<tr>
-<td><img src="sierraleone.png" class="flag-icon">Sierra Leone</td>
-<td>Freetown</td>
-<td>Cassava leaf stew</td>
-<td>~8.73 million</td>
-<td>English</td>
-</tr>
-<tr>
-<td><img src="singapore.png" class="flag-icon">Singapore</td>
-<td>Singapore</td>
-<td>Hainanese Chicken Rice</td>
-<td>~6.4 million</td>
-<td>English, Malay, Mandarin, Tamil</td>
-</tr>
-<tr>
-<td><img src="slovokia.png" class="flag-icon">Slovakia</td>
-<td>Bratislava</td>
-<td>Bryndzovehalusky</td>
-<td>~5.4 million</td>
-<td>Slovak</td>
-</tr>
-<tr>
-<td><img src="slovenia.png" class="flag-icon">Slovenia</td>
-<td>Ljubljana</td>
-<td>Struklji</td>
-<td>~2.1 million</td>
-<td>Slovene</td>
-</tr>
-<tr>
-<td><img src="solomon.png" class="flag-icon">Soloman Island</td>
-<td>Honiara</td>
-<td>Poi</td>
-<td>~700,000</td>
-<td>English</td>
-</tr>
-<tr>
-<td><img src="somalia.png" class="flag-icon">Somalia</td>
-<td>Mogsdishu</td>
-<td>Bariis Iskukaris</td>
-<td>~17 millon</td>
-<td>Somali & Arabic</td>
-</tr>
-<tr>
-<td><img src="southafrica.png" class="flag-icon">South Africa</td>
-<td>Cape Town, Bloemfontein</td>
-<td>Bobotie</td>
-<td>~63 million</td>
-<td>11 official languages incl. Zulu, Xhosa,<br>Afrikaans, English</td>
-</tr>
-<tr>
-<td><img src="srilanka.png" class="flag-icon">Sri Lanka</td>
-<td>Colombo</td>
-<td>Rice and Curry</td>
-<td>~22 million</td>
-<td>Sinhala, Tamil</td>
-</tr>
-<tr>
-<td><img src="southsudan.png" class="flag-icon">South Sudan</td>
-<td>Juba</td>
-<td>Kissra and Kofta</td>
-<td>~12.19 million</td>
-<td>English</td>
-</tr>
-<tr>
-<td><img src="sudan.png" class="flag-icon">Sudan</td>
-<td>Khartoum</td>
-<td>Kissra</td>
-<td>~50.5 million</td>
-<td>Arabic & English</td>
-</tr>
-<tr>
-<td><img src="suriname.png" class="flag-icon">Suriname</td>
-<td>Paramaribo</td>
-<td>Pastei</td>
-<td>~628,886</td>
-<td>Dutch</td>
-</tr>
-<tr>
-<td><img src="sweden.png" class="flag-icon">Sweden</td>
-<td>Stockholm</td>
-<td>Swedish meatballs and mashed potatoes</td>
-<td>~10.6 million</td>
-<td>Swedish</td>
-</tr>
-<tr>
-<td><img src="switzerland.png" class="flag-icon">Switzerland</td>
-<td>Bern</td>
-<td>Fondue</td>
-<td>~9 million</td>
-<td>German, French & Romansh</td>
-</tr>
-<tr>
-<td><img src="syria.png" class="flag-icon">Syria</td>
-<td>Damascas</td>
-<td>Kibbeh</td>
-<td>~23.2 million</td>
-<td>Arabic</td>
-</tr>
-</table>
-<br>
-<h2 style="color:#0066ff; text-align:center">T - 11</h2>
-<div class="table-section">
-  <table>
-<tr>
-      <th>Country</th>
-      <th>Capital</th>
-      <th>Famous Food</th>
-      <th>Population</th>
-      <th>Official Language</th>
-    </tr>
+    <h2>S - 27</h2>
+    <div class="table-container">
+      <table>
+        <tr><th>Country</th><th>Capital</th><th>Famous Food</th><th>Population</th><th>Official Language</th></tr>
+        <tr><td><img src="saintkitts.png" class="flag-icon"> Saint Kitts and Nevis</td><td>Basseterre</td><td>Goat Water</td><td>47,000</td><td>English</td></tr>
+        <tr><td><img src="saintlucia.png" class="flag-icon"> Saint Lucia</td><td>Castries</td><td>Green Fig & Saltfish</td><td>180,000</td><td>English</td></tr>
+        <tr><td><img src="saint vincent and Grenadines.png" class="flag-icon"> St. Vincent & Grenadines</td><td>Kingstown</td><td>Roasted Breadfruit</td><td>~100,000</td><td>English</td></tr>
+        <tr><td><img src="samoa.png" class="flag-icon"> Samoa</td><td>Apia</td><td>Oka</td><td>~219,000</td><td>Samoan</td></tr>
+        <tr><td><img src="san marino.png" class="flag-icon"> San Marino</td><td>San Marino</td><td>Torta Tre Monti</td><td>34,000</td><td>Italian</td></tr>
+        <tr><td><img src="sao tome.png" class="flag-icon"> Sao Tome & Principe</td><td>São Tomé</td><td>Calulu</td><td>~240,000</td><td>Portuguese</td></tr>
+        <tr><td><img src="saudi.png" class="flag-icon"> Saudi Arabia</td><td>Riyadh</td><td>Kabsa</td><td>~34.6M</td><td>Arabic</td></tr>
+        <tr><td><img src="scot.png" class="flag-icon"> Scotland</td><td>Edinburgh</td><td>Haggis</td><td>~5.49M</td><td>English</td></tr>
+        <tr><td><img src="senegal.png" class="flag-icon"> Senegal</td><td>Dakar</td><td>Thieboudienne</td><td>~18.9M</td><td>French</td></tr>
+        <tr><td><img src="serbia.png" class="flag-icon"> Serbia</td><td>Belgrade</td><td>Ćevapi</td><td>~6.7M</td><td>Serbian</td></tr>
+        <tr><td><img src="sayc.png" class="flag-icon"> Seychelles</td><td>Victoria</td><td>Ladob</td><td>133,000</td><td>Creole, French, English</td></tr>
+        <tr class="highlight-red"><td><img src="spain.png" class="flag-icon"> Spain</td><td>Madrid</td><td>Paella</td><td>~47M</td><td>Spanish</td></tr>
+        <tr class="highlight-red"><td><img src="southkorea.png" class="flag-icon"> South Korea</td><td>Seoul</td><td>Kimchi</td><td>~51M</td><td>Korean</td></tr>
+        <tr><td><img src="sierraleone.png" class="flag-icon"> Sierra Leone</td><td>Freetown</td><td>Cassava Stew</td><td>~8.7M</td><td>English</td></tr>
+        <tr><td><img src="singapore.png" class="flag-icon"> Singapore</td><td>Singapore</td><td>Chicken Rice</td><td>~6.4M</td><td>English, Malay</td></tr>
+        <tr><td><img src="slovokia.png" class="flag-icon"> Slovakia</td><td>Bratislava</td><td>Bryndzovehalusky</td><td>~5.4M</td><td>Slovak</td></tr>
+        <tr><td><img src="slovenia.png" class="flag-icon"> Slovenia</td><td>Ljubljana</td><td>Struklji</td><td>~2.1M</td><td>Slovene</td></tr>
+        <tr><td><img src="solomon.png" class="flag-icon"> Soloman Island</td><td>Honiara</td><td>Poi</td><td>~700,000</td><td>English</td></tr>
+        <tr><td><img src="somalia.png" class="flag-icon"> Somalia</td><td>Mogadishu</td><td>Bariis</td><td>~17M</td><td>Somali</td></tr>
+        <tr><td><img src="southafrica.png" class="flag-icon"> South Africa</td><td>Cape Town</td><td>Bobotie</td><td>~63M</td><td>11 Languages</td></tr>
+        <tr><td><img src="srilanka.png" class="flag-icon"> Sri Lanka</td><td>Colombo</td><td>Rice & Curry</td><td>~22M</td><td>Sinhala, Tamil</td></tr>
+        <tr><td><img src="southsudan.png" class="flag-icon"> South Sudan</td><td>Juba</td><td>Kofta</td><td>~12.19M</td><td>English</td></tr>
+        <tr><td><img src="sudan.png" class="flag-icon"> Sudan</td><td>Khartoum</td><td>Kissra</td><td>~50.5M</td><td>Arabic</td></tr>
+        <tr><td><img src="suriname.png" class="flag-icon"> Suriname</td><td>Paramaribo</td><td>Pastei</td><td>~628k</td><td>Dutch</td></tr>
+        <tr><td><img src="sweden.png" class="flag-icon"> Sweden</td><td>Stockholm</td><td>Meatballs</td><td>~10.6M</td><td>Swedish</td></tr>
+        <tr><td><img src="switzerland.png" class="flag-icon"> Switzerland</td><td>Bern</td><td>Fondue</td><td>~9M</td><td>German, French</td></tr>
+        <tr><td><img src="syria.png" class="flag-icon"> Syria</td><td>Damascus</td><td>Kibbeh</td><td>~23.2M</td><td>Arabic</td></tr>
+      </table>
+    </div>
 
-<tr>
-<td><img src="tajikistan.png" class="flag-icon">Tajikistan</td>
-<td>Dushanbe</td>
-<td>Plov</td>
-<td>~10.8 million</td>
-<td>Tajik</td>
-</tr>
-<tr>
-<td><img src="tanzania.png" class="flag-icon">Tanzania</td>
-<td>Dodoma</td>
-<td>Ugali</td>
-<td>~70.5 million</td>
-<td>Swahili & English</td>
-</tr>
-<tr>
-<td><img src="thiland.png" class="flag-icon">Thailand</td>
-<td>Bangkok</td>
-<td>Pad Thai</td>
-<td>~71.6 million</td>
-<td>Thai</td>
-</tr>
-<tr>
-<td><img src="timore.png" class="flag-icon">Timor-Leste</td>
-<td>Dili</td>
-<td>Ikan Pepes</td>
-<td>~1.4 million</td>
-<td>Portuguese & Tetum</td>
-</tr>
-<tr>
-<td><img src="togo.png" class="flag-icon">Togo</td>
-<td>Lomé</td>
-<td>Fufu</td>
-<td>~9.7 million</td>
-<td>French</td>
-</tr>
-<tr>
-<td><img src="tonga.png" class="flag-icon">Tonga</td>
-<td>Nukuʻalofa</td>
-<td>Lu Pulu</td>
-<td>104,000</td>
-<td>Tongan, English</td>
-</tr>
-<tr>
-<td><img src="trinidad.png" class="flag-icon">Trinidad and Tobago</td>
-<td>Port of Spain</td>
-<td>Callaloo</td>
-<td>~1.5 million</td>
-<td>English</td>
-</tr>
-<tr>
-<td><img src="tunisia.png" class="flag-icon">Tunisia</td>
-<td>Tunis</td>
-<td>Couscous</td>
-<td>~12.3 million</td>
-<td>Arabic</td>
-</tr>
-<tr style="color:red">
-<td><img src="turkey.png" class="flag-icon">Turkey</td>
-<td>Ankara</td>
-<td>Kebab</td>
-<td>~87.6 million</td>
-<td>Turkish</td>
-</tr>
-<tr>
-<td><img src="turkmekisthan.png" class="flag-icon">Turkmenistan</td>
-<td>Ashgabat</td>
-<td>Plov</td>
-<td>~7.6 million</td>
-<td>Turkmen</td>
-</tr>
-<tr>
-<td><img src="tuvalu.png" class="flag-icon">Tuvalu</td>
-<td>Funafuti</td>
-<td>Pulaka</td>
-<td>9,500</td>
-<td>Tuvaluan & English</td>
-</tr>
-</table>
-<br>
-<h2 style="color:#0066ff; text-align:center">U - 7</h2>
-<div class="table-section">
-  <table>
-<tr>
-      <th>Country</th>
-      <th>Capital</th>
-      <th>Famous Food</th>
-      <th>Population</th>
-      <th>Official Language</th>
-    </tr>
+    <h2>T - 11</h2>
+    <div class="table-container">
+      <table>
+        <tr><th>Country</th><th>Capital</th><th>Famous Food</th><th>Population</th><th>Official Language</th></tr>
+        <tr><td><img src="tajikistan.png" class="flag-icon"> Tajikistan</td><td>Dushanbe</td><td>Plov</td><td>~10.8M</td><td>Tajik</td></tr>
+        <tr><td><img src="tanzania.png" class="flag-icon"> Tanzania</td><td>Dodoma</td><td>Ugali</td><td>~70.5M</td><td>Swahili</td></tr>
+        <tr><td><img src="thiland.png" class="flag-icon"> Thailand</td><td>Bangkok</td><td>Pad Thai</td><td>~71.6M</td><td>Thai</td></tr>
+        <tr><td><img src="timore.png" class="flag-icon"> Timor-Leste</td><td>Dili</td><td>Ikan Pepes</td><td>~1.4M</td><td>Portuguese</td></tr>
+        <tr><td><img src="togo.png" class="flag-icon"> Togo</td><td>Lomé</td><td>Fufu</td><td>~9.7M</td><td>French</td></tr>
+        <tr><td><img src="tonga.png" class="flag-icon"> Tonga</td><td>Nukuʻalofa</td><td>Lu Pulu</td><td>104,000</td><td>Tongan</td></tr>
+        <tr><td><img src="trinidad.png" class="flag-icon"> Trinidad & Tobago</td><td>Port of Spain</td><td>Callaloo</td><td>~1.5M</td><td>English</td></tr>
+        <tr><td><img src="tunisia.png" class="flag-icon"> Tunisia</td><td>Tunis</td><td>Couscous</td><td>~12.3M</td><td>Arabic</td></tr>
+        <tr class="highlight-red"><td><img src="turkey.png" class="flag-icon"> Turkey</td><td>Ankara</td><td>Kebab</td><td>~87.6M</td><td>Turkish</td></tr>
+        <tr><td><img src="turkmekisthan.png" class="flag-icon"> Turkmenistan</td><td>Ashgabat</td><td>Plov</td><td>~7.6M</td><td>Turkmen</td></tr>
+        <tr><td><img src="tuvalu.png" class="flag-icon"> Tuvalu</td><td>Funafuti</td><td>Pulaka</td><td>9,500</td><td>Tuvaluan</td></tr>
+      </table>
+    </div>
 
-<tr>
-<td><img src="uganda.png" class="flag-icon">Uganda</td>
-<td>Kampala</td>
-<td>Matoke</td>
-<td>~51.4 million</td>
-<td>English & Swahili</td>
-</tr>
-<tr>
-<td><img src="ukrain.png" class="flag-icon">Ukraine</td>
-<td>Kyiv</td>
-<td>Borscht</td>
-<td>~39 million</td>
-<td>Ukrainian</td>
-</tr>
-<tr style="color:red">
-<td><img src="uae.png" class="flag-icon">United Arab Emirates (U.A.E)</td>
-<td>Abu Dhabi</td>
-<td>Shawarma</td>
-<td>~11.3 million</td>
-<td>Arabic</td>
-</tr>
-<tr style="color:red">
-<td><img src="uk.png" class="flag-icon">United Kingdom (U.K)</td>
-<td>London</td>
-<td>Fish and Chips</td>
-<td>69.5 million</td>
-<td>English</td>
-</tr>
-<tr style="color:red">
-<td><img src="usa.png" class="flag-icon">United States of America (U.S.A)</td>
-<td>Washington, D.C.</td>
-<td>Hamburger</td>
-<td>~347.3 million</td>
-<td>US English (de facto)</td>
-</tr>
-<tr>
-<td><img src="uruguay.png" class="flag-icon">Uruguay</td>
-<td>Montevideo</td>
-<td>Asado</td>
-<td>~3.4 million</td>
-<td>Spanish</td>
-</tr>
-<tr>
-<td><img src="uzbekisthan.png" class="flag-icon">Uzbekistan</td>
-<td>Tashkent</td>
-<td>Plov</td>
-<td>~37 million</td>
-<td>Uzbek</td>
-</tr>
-</table>
-<br>
-<h2 style="color:#0066ff; text-align:center">V - 4</h2>
-<div class="table-section">
-  <table>
-<tr>
-      <th>Country</th>
-      <th>Capital</th>
-      <th>Famous Food</th>
-      <th>Population</th>
-      <th>Official Language</th>
-    </tr>
+    <h2>U - 7</h2>
+    <div class="table-container">
+      <table>
+        <tr><th>Country</th><th>Capital</th><th>Famous Food</th><th>Population</th><th>Official Language</th></tr>
+        <tr><td><img src="uganda.png" class="flag-icon"> Uganda</td><td>Kampala</td><td>Matoke</td><td>~51.4M</td><td>English</td></tr>
+        <tr><td><img src="ukrain.png" class="flag-icon"> Ukraine</td><td>Kyiv</td><td>Borscht</td><td>~39M</td><td>Ukrainian</td></tr>
+        <tr class="highlight-red"><td><img src="uae.png" class="flag-icon"> U.A.E</td><td>Abu Dhabi</td><td>Shawarma</td><td>~11.3M</td><td>Arabic</td></tr>
+        <tr class="highlight-red"><td><img src="uk.png" class="flag-icon"> United Kingdom</td><td>London</td><td>Fish & Chips</td><td>69.5M</td><td>English</td></tr>
+        <tr class="highlight-red"><td><img src="usa.png" class="flag-icon"> U.S.A</td><td>Washington, D.C.</td><td>Hamburger</td><td>~347.3M</td><td>English</td></tr>
+        <tr><td><img src="uruguay.png" class="flag-icon"> Uruguay</td><td>Montevideo</td><td>Asado</td><td>~3.4M</td><td>Spanish</td></tr>
+        <tr><td><img src="uzbekisthan.png" class="flag-icon"> Uzbekistan</td><td>Tashkent</td><td>Plov</td><td>~37M</td><td>Uzbek</td></tr>
+      </table>
+    </div>
 
-<tr>
-<td><img src="vanu.png" class="flag-icon">Vanuatu</td>
-<td>Port Vila</td>
-<td>Lap Lap (root veggie dish)</td>
-<td>~330,000</td>
-<td>Vislama, English, French</td>
-</tr>
-<tr>
-<td><img src="vaticancity.png" class="flag-icon">Vatican City</td>
-<td>Vatican City</td>
-<td>Italian-style pastries</td>
-<td>~800</td>
-<td>Latin, Italian</td>
-</tr>
-<tr>
-<td><img src="venezuela.png" class="flag-icon">Venezuela</td>
-<td>Caracas</td>
-<td>Arepas</td>
-<td>~28 million</td>
-<td>Spanish</td>
-</tr>
-<tr>
-<td><img src="vietnam.png" class="flag-icon">Vietnam</td>
-<td>Honai</td>
-<td>Pho (noodle soup)</td>
-<td>~100 million</td>
-<td>Vietnamese</td>
-</tr>
-</table>
-<br>
-<h2 style="color:#0066ff; text-align:center">W - 1</h2>
-<div class="table-section">
-  <table>
-<tr>
-      <th>Country</th>
-      <th>Capital</th>
-      <th>Famous Food</th>
-      <th>Population</th>
-      <th>Official Language</th>
-    </tr>
+    <h2>V - 4</h2>
+    <div class="table-container">
+      <table>
+        <tr><th>Country</th><th>Capital</th><th>Famous Food</th><th>Population</th><th>Official Language</th></tr>
+        <tr><td><img src="vanu.png" class="flag-icon"> Vanuatu</td><td>Port Vila</td><td>Lap Lap</td><td>~330k</td><td>Bislama, English</td></tr>
+        <tr><td><img src="vaticancity.png" class="flag-icon"> Vatican City</td><td>Vatican City</td><td>Pastries</td><td>~800</td><td>Latin, Italian</td></tr>
+        <tr><td><img src="venezuela.png" class="flag-icon"> Venezuela</td><td>Caracas</td><td>Arepas</td><td>~28M</td><td>Spanish</td></tr>
+        <tr><td><img src="vietnam.png" class="flag-icon"> Vietnam</td><td>Hanoi</td><td>Pho</td><td>~100M</td><td>Vietnamese</td></tr>
+      </table>
+    </div>
 
-<tr>
-<td><img src="western sahara.png" class="flag-icon">Western Sahara</td>
-<td>Laayoune(declared)</td>
-<td>Couscous with camel meat</td>
-<td>600,000(disputed)</td>
-<td>Modern standard Arabic</td>
-</tr>
-</table><br>
-<h2 style="color:#0066ff; text-align:center">Y - 1</h2>
-<div class="table-section">
-  <table>
-<tr>
-      <th>Country</th>
-      <th>Capital</th>
-      <th>Famous Food</th>
-      <th>Population</th>
-      <th>Official Language</th>
-    </tr>
+    <h2>W - 1</h2>
+    <div class="table-container">
+      <table>
+        <tr><th>Country</th><th>Capital</th><th>Famous Food</th><th>Population</th><th>Official Language</th></tr>
+        <tr><td><img src="western sahara.png" class="flag-icon"> Western Sahara</td><td>Laayoune</td><td>Couscous</td><td>~600k</td><td>Arabic</td></tr>
+      </table>
+    </div>
 
-<tr>
-<td><img src="yemen.png" class="flag-icon">Yemen</td>
-<td>Sana's</td>
-<td>Saltah (spicy meat stew)</td>
-<td>~34 million</td>
-<td>Arabic</td>
-</tr>
-</table>
-<br>
-<h2 style="color:#0066ff; text-align:center">Z - 2</h2>
-<div class="table-section">
-  <table>
-<tr>
-      <th>Country</th>
-      <th>Capital</th>
-      <th>Famous Food</th>
-      <th>Population</th>
-      <th>Official Language</th>
-    </tr>
+    <h2>Y - 1</h2>
+    <div class="table-container">
+      <table>
+        <tr><th>Country</th><th>Capital</th><th>Famous Food</th><th>Population</th><th>Official Language</th></tr>
+        <tr><td><img src="yemen.png" class="flag-icon"> Yemen</td><td>Sana'a</td><td>Saltah</td><td>~34M</td><td>Arabic</td></tr>
+      </table>
+    </div>
 
-<tr>
-<td><img src="zambia.png" class="flag-icon">Zambia</td>
-<td>Lusaka</td>
-<td>Nshima with relish</td>
-<td>~20 million</td>
-<td>English</td>
-</tr>
-<tr>
-<td><img src="zimbabwe.png" class="flag-icon">Zimbabwe</td>
-<td>Harare</td>
-<td>Sadza (maize meal)</td>
-<td>~16 million</td>
-<td>16 official langages; English, Shona & Ndebele etc.</td>
-</tr>
-</table>
-</div>
-<p> This page containts total countries(N-Z) 86.</p>
-<p "style=color:red"> Population of every countries varries every year.</p>
-</div>
-<footer>
-  &copy;2026. <i>The Country Book. </i>An Incredible World. All rights reserved.<br>
-  <div style="text-align:center"> <a href="T&C.html"=style="color:#004080; font-weight: bold;">Terms and Conditions</a>
-</div>
-</footer>
+    <h2>Z - 2</h2>
+    <div class="table-container">
+      <table>
+        <tr><th>Country</th><th>Capital</th><th>Famous Food</th><th>Population</th><th>Official Language</th></tr>
+        <tr><td><img src="zambia.png" class="flag-icon"> Zambia</td><td>Lusaka</td><td>Nshima</td><td>~20M</td><td>English</td></tr>
+        <tr><td><img src="zimbabwe.png" class="flag-icon"> Zimbabwe</td><td>Harare</td><td>Sadza</td><td>~16M</td><td>English, Shona</td></tr>
+      </table>
+    </div>
+
+    <div class="wonder-box glass">
+      <p><b>Total Countries (N-Z): 86</b></p>
+      <p style="color:red; font-size: 13px; margin-top: 5px;">Note: Population data fluctuates annually.</p>
+    </div>
+  </div>
+
+  <footer>
+    &copy; 2026. <i>The Country Book.</i> An Incredible World. All rights reserved.<br><br>
+    <a href="T&C.html">Terms and Conditions</a>
+  </footer>
+
+  <script>
+    function toggleMenu() {
+      document.getElementById("myDropdown").classList.toggle("show");
+    }
+    window.onclick = function(event) {
+      if (!event.target.matches('.hamburger-icon')) {
+        var dropdowns = document.getElementsByClassName("dropdown-content");
+        for (var i = 0; i < dropdowns.length; i++) {
+          var openDropdown = dropdowns[i];
+          if (openDropdown.classList.contains('show')) {
+            openDropdown.classList.remove('show');
+          }
+        }
+      }
+    }
+  </script>
 </body>
 </html>
-
-
