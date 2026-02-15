@@ -61,19 +61,27 @@
     }
 
     .dropdown-menu {
-      position: absolute;
-      right: 0;
-      top: 65px;
-      background-color: #ffffff;
-      min-width: 320px;
-      border-radius: 8px;
-      box-shadow: 0 6px 15px rgba(0,0,0,0.2);
-      overflow: hidden;
-      /*==== NEW ANIMATION SETUP ====*/ 
-      transform: translateX(100%);
-      opacity: 0;
-      pointer-events:none;
-      transition: transform 0.35s ease, opacity 0.3s ease;
+      .dropdown-menu {
+  position: absolute;
+  right: 0;
+  top: 65px;
+  background-color: #ffffff;
+  min-width: 320px;
+  border-radius: 8px;
+  box-shadow: 0 6px 15px rgba(0,0,0,0.2);
+  overflow: hidden;
+
+  transform: translateX(100%);
+  opacity: 0;
+  visibility: hidden;
+  transition: transform 0.35s ease, opacity 0.3s ease;
+}
+
+.dropdown-menu.active {
+  transform: translateX(0);
+  opacity: 1;
+  visibility: visible;
+}
     }
 
     .dropdown-menu.active{
@@ -252,11 +260,23 @@
 
 <script>
 function toggleMenu() {
-   document.getElementById("menu").classList.toggle("active");
+  document.getElementById("menu").classList.toggle("active");
 }
+<script>
+function toggleMenu() {
+  document.getElementById("menu").classList.toggle("active");
+/* Close AFTER navigation click */
+document.querySelectorAll("#menu a").forEach(link => {
+  link.addEventListener("click", function () {
+    setTimeout(() => {
+      document.getElementById("menu").classList.remove("active");
+    }, 150);
+  });
+});
 </script>
 
 </body>
 </html>
+
 
 
