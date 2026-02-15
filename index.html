@@ -2,8 +2,9 @@
 <html lang="en">
 <head>
   <title>Home - The Country Book</title>
+
   <style>
-   * {
+    * {
       box-sizing: border-box;
       font-family: Arial, sans-serif;
       margin: 0;
@@ -63,7 +64,7 @@
     .dropdown-menu {
       position: absolute;
       right: 0;
-      top: 65px;
+      top: 80px;
       background-color: #ffffff;
       min-width: 320px;
       border-radius: 8px;
@@ -73,7 +74,7 @@
       transform: translateX(100%);
       opacity: 0;
       visibility: hidden;
-      transition: transform 0.35s ease, opacity 0.3s ease;
+      transition: transform 0.35s ease, opacity 0.3s ease, visibility 0.3s ease;
     }
 
     .dropdown-menu.active {
@@ -84,7 +85,7 @@
 
     .dropdown-menu a {
       display: block;
-      padding: 14px 20px;
+      padding: 12px 18px;
       text-decoration: none;
       color: #002147;
       font-weight: bold;
@@ -198,17 +199,44 @@
 
 <div class="main-content">
   <section class="hero">
+
     <div class="wonder-box glass">
       <h1>Welcome to The Country Book</h1>
     </div>
 
     <img src="realistic country doodle 3.png" alt="the country book doodle">
 
-    <p><b>The Country Book</b> is a curated digital collection that brings the world into view one nation at a time.</p>
+    <p>
+      <i><b>Hello</b></i><br><br>
+      <b>The Country Book</b> is a curated digital collection that brings the world into view one nation at a time. 
+      Organized with clarity and crafted for curiosity, each entry offers a brief yet meaningful glimpse into a country's identity, 
+      from its capital and population to iconic dishes. This book is your simple yet structured window into the diversity of our world.
+    </p>
+
+    <p>
+      You can find every country in alphabetical order in the next pages.<br>
+      Every country is listed in table format along with their name, capital, famous food, and population, 
+      which will help you find them quickly in one place.
+    </p>
+
+    <div class="wonder-box">
+      <h2>United Nations (UN)</h2>
+      <p>
+        The United Nations (UN) is an intergovernmental organization established on October 24, 1945, after the end of World War II.
+        It was created to promote global peace, security, and cooperation among countries.
+      </p>
+    </div>
+
+    <h4>
+      <b>Explore. Discover. Learn.</b><br><br>
+      Use the hamburger menu. That will guide you to explore more of this website as they are functional.
+    </h4>
+
   </section>
 
   <footer>
-    &copy; 2026. <i>The Country Book.</i> An Incredible World.
+    &copy; 2026. <i>The Country Book.</i> An Incredible World. All rights reserved.<br><br>
+    <a href="T&C.html" style="color:#004080; font-weight: bold;">Terms and Conditions</a>
   </footer>
 </div>
 
@@ -216,6 +244,15 @@
 function toggleMenu() {
   document.getElementById("menu").classList.toggle("active");
 }
+
+document.addEventListener("click", function(event) {
+  const menu = document.getElementById("menu");
+  const hamburger = document.querySelector(".hamburger");
+
+  if (!menu.contains(event.target) && !hamburger.contains(event.target)) {
+    menu.classList.remove("active");
+  }
+});
 </script>
 
 </body>
