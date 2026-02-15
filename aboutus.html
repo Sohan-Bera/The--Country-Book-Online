@@ -48,31 +48,64 @@
       color: white;
     }
 
-    nav {
-      display: flex;
-      flex-wrap: wrap;
-      justify-content: center;
-      gap: 10px;
+   /* --- HAMBURGER MENU STYLES --- */
+    .menu-container {
+      position: relative;
+      display: inline-block;
     }
 
-    nav a {
-      margin: 0 5px;
-      padding: 8px 16px;
-      background-color: #e6f0ff;
+    .hamburger-icon {
+      font-size: 30px;
+      cursor: pointer;
+      color: white;
+      padding: 5px 10px;
+      user-select: none;
+      transition: color 0.3s;
+    }
+
+    .hamburger-icon:hover {
+      color: #ff1a8c;
+    }
+
+    /* The Dropdown Box */
+    .dropdown-content {
+      display: none; /* Hidden by default */
+      position: absolute;
+      right: 0;
+      top: 50px;
+      background-color: #ffffff;
+      min-width: 200px;
+      box-shadow: 0 8px 16px rgba(0,0,0,0.2);
+      border-radius: 8px;
+      z-index: 1001;
+      overflow: hidden;
+    }
+
+    /* Links inside the dropdown */
+    .dropdown-content a {
       color: #002147;
+      padding: 12px 16px;
       text-decoration: none;
+      display: block;
       font-weight: bold;
-      border-radius: 6px;
-      border: 2px solid transparent;
-      transition: all 0.3s ease;
-      font-size: 16px;
+      border-bottom: 1px solid #f0f0f0;
+      transition: background-color 0.3s;
     }
 
-    nav a:hover {
+    .dropdown-content a:last-child {
+      border-bottom: none;
+    }
+
+    .dropdown-content a:hover {
       background-color: #ff1a8c;
       color: white;
-      border-color: #ff1a8c;
     }
+
+    /* Class to show the menu (toggled by JS) */
+    .show {
+      display: block;
+    }
+
 
     .main-content {
       background-color: #eef5ff;
@@ -160,15 +193,19 @@
           <div class="tagline">An Incredible World</div>
         </div>
       </div>
-
-      <nav>
+      
+  <div class="menu-container">
+      <div class="hamburger-icon" onclick="toggleMenu()">&#9776;</div>
+      <div id="myDropdown" class="dropdown-content">
         <a href="index.html">Home</a>
         <a href="contrysite[a-m].html">Nationbox 1</a>
         <a href="contrysite[n-z].html">Nationbox 2</a>
         <a href="aboutus.html">About Us</a>
         <a href="awonderfulworld.html">GlobeX</a>
-      </nav>
+      </div>
+    </div>
     </header>
+    
 <section class="hero">
 <!-- Wonder 1 -->
       <div class="wonder-box glass">
@@ -179,21 +216,18 @@
 <div class="wonder-box">
 <h3 style="text-align: center">Creator & Inspiration</h3><br>
 
-<p style="text-align:center"><i><b>"Hi, myself Sohan Bera, the mind and heart behind The Country Book. This project began with a simple but powerful curiosity: <b>"What makes each country unique?"</b> I've always been fascinated by geography, culture, countries and how beautiful diverse our world is. This website is not backed by any digital organization or company. It was created purely out of passion: to build something meanningful, accessible and educational for everyone.<br>I believe knowledge should be free, especially when it brings people closer to understanding the world and each other.This website was born from a simple frustration. Every time I wanted to learn about country-whether its name, flags, famous foods- had to search across multiple sources, and i rarely found everything in one place. So I thought, why not bring it all together?<br><b>The Country Book</b> is my answer to that. It's a clean, simple space where you can explore the world alphabetically, peacefully and in one place. So, that's my inspiration behind developing this website. <br>Thank you for visiting."</b></i><br>--         Sohan</p></div>
+<p style="text-align:center"><i><b>"This project began with a simple but powerful curiosity: <b>"What makes each country unique?"</b> I've always been fascinated by geography, culture, countries and how beautiful diverse our world is. This website is not backed by any digital organization or company. It was created purely out of passion: to build something meanningful, accessible and educational for everyone.<br>I believe knowledge should be free, especially when it brings people closer to understanding the world and each other.This website was born from a simple frustration. Every time users wanted to learn about country-whether its name, flags, famous foods- had to search across multiple sources, and users rarely found everything in one place. So we thought, why not bring it all together?<br><b>The Country Book</b> is our answer to that. It's a clean, simple space where you can explore the world alphabetically, peacefully and in one place. So, that's our inspiration behind developing this website. <br>Thank you for visiting."--   Country Book Team</b></i><br></p></div>
 
 <div class="wonder-box">
 <h3 style="text-align:center">How this website helps you?</h3>
 <p style="text-align:center">This project is made purely for educational and personal use, built with honesty, effort and love for knowledge. Whether you are studing, travelling, or just curious, this site helps you to save time and gives you a clear view of our amazing world. It not only shows the countries and basic information, but also includes incredible facts in the Globex section. The website receives updates and users don't need to do anything. Just refresh the page once or twice and it'll up to date automatically.</p></div>
 
 <div class="wonder-box">
-<h3 style="text-align:center">Small Guide</h3>
-<p style="text-align:center"> So dive in to the navigation bar above and explore the website. Every navigation button will open a new page just click and discover something new.</p></div>
+<h3 style="text-align:center">Tips</h3>
+<p style="text-align:center"> Dive in to the navigation bar above and explore the website. Every navigation button will open a new page just click and discover something new.</p></div>
 <div class="wonder-box">
 <p style="text-align:center">Thanks to The Country Book Administrator for this great idea - bringing all nations under one roof.<br>Thank you for visiting the site.</p></div>
-  <section class="hero">
-<center><div>
-    <h1 style="color:#4b0082; font-size:28px;">Credits</h1></div></center>
-</section>
+  
 <br>
 
 <p style="text-align:center">Follow &copy 2026 The Country Book T&C</p><br>
@@ -204,7 +238,26 @@
 <div style="text-align:center"> <a href="T&C.html"=style="color:#004080; font-weight: bold;"><b>Terms and Conditions</b></a>
 </div>
 </footer>
+  <script>
+    function toggleMenu() {
+      document.getElementById("myDropdown").classList.toggle("show");
+    }
+
+    // Close the dropdown if the user clicks outside of it
+    window.onclick = function(event) {
+      if (!event.target.matches('.hamburger-icon')) {
+        var dropdowns = document.getElementsByClassName("dropdown-content");
+        for (var i = 0; i < dropdowns.length; i++) {
+          var openDropdown = dropdowns[i];
+          if (openDropdown.classList.contains('show')) {
+            openDropdown.classList.remove('show');
+          }
+        }
+      }
+    }
+  </script>
 </body>
 </html>
+
 
 
