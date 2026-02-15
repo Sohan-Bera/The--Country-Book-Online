@@ -1,9 +1,14 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Home - The Country Book</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+
   <style>
-   * {
+    /* General Resets */
+    * {
       box-sizing: border-box;
       font-family: Arial, sans-serif;
       margin: 0;
@@ -15,10 +20,11 @@
       background-color: #f0f4ff;
     }
 
+    /* Header Styling */
     header {
       background-color: #004080;
       color: white;
-      padding: 20px;
+      padding: 15px 20px;
       display: flex;
       justify-content: space-between;
       align-items: center;
@@ -34,50 +40,84 @@
     }
 
     .logo-img {
-      height: 70px;
+      height: 60px; /* Slightly adjusted for better proportion */
       margin-right: 10px;
     }
 
     .logo-title {
-      font-size: 32px;
+      font-size: 28px;
       font-weight: bold;
     }
 
     .tagline {
-      font-size: 18px;
-      color: white;
-    }
-
-    nav {
-      display: flex;
-      flex-wrap: wrap;
-      justify-content: center;
-      gap: 10px;
-    }
-
-    nav a {
-      margin: 0 5px;
-      padding: 8px 16px;
-      background-color: #e6f0ff;
-      color: #002147;
-      text-decoration: none;
-      font-weight: bold;
-      border-radius: 6px;
-      border: 2px solid transparent;
-      transition: all 0.3s ease;
       font-size: 16px;
+      color: #e0e0e0;
     }
 
-    nav a:hover {
+    /* --- HAMBURGER MENU STYLES --- */
+    .menu-container {
+      position: relative;
+      display: inline-block;
+    }
+
+    .hamburger-icon {
+      font-size: 30px;
+      cursor: pointer;
+      color: white;
+      padding: 5px 10px;
+      user-select: none;
+      transition: color 0.3s;
+    }
+
+    .hamburger-icon:hover {
+      color: #ff1a8c;
+    }
+
+    /* The Dropdown Box */
+    .dropdown-content {
+      display: none; /* Hidden by default */
+      position: absolute;
+      right: 0;
+      top: 50px;
+      background-color: #ffffff;
+      min-width: 200px;
+      box-shadow: 0 8px 16px rgba(0,0,0,0.2);
+      border-radius: 8px;
+      z-index: 1001;
+      overflow: hidden;
+    }
+
+    /* Links inside the dropdown */
+    .dropdown-content a {
+      color: #002147;
+      padding: 12px 16px;
+      text-decoration: none;
+      display: block;
+      font-weight: bold;
+      border-bottom: 1px solid #f0f0f0;
+      transition: background-color 0.3s;
+    }
+
+    .dropdown-content a:last-child {
+      border-bottom: none;
+    }
+
+    .dropdown-content a:hover {
       background-color: #ff1a8c;
       color: white;
-      border-color: #ff1a8c;
     }
 
+    /* Class to show the menu (toggled by JS) */
+    .show {
+      display: block;
+    }
+
+    /* --- MAIN CONTENT --- */
     .main-content {
       background-color: #eef5ff;
       padding: 20px;
       padding-bottom: 40px;
+      min-height: 100vh;
     }
 
     section.hero {
@@ -95,6 +135,7 @@
     .hero img {
       max-width: 300px;
       width: 100%;
+      height: auto;
       margin: 20px auto;
       display: block;
     }
@@ -140,6 +181,22 @@
       color: #222;
     }
 
+    .social-icons {
+      margin-top: 30px;
+      font-size: 24px;
+      color: #004080;
+    }
+
+    .social-icons i {
+      margin: 0 10px;
+      cursor: pointer;
+      transition: color 0.3s;
+    }
+
+    .social-icons i:hover {
+      color: #ff1a8c;
+    }
+
     footer {
       background-color: #b8ffe3;
       text-align: center;
@@ -149,34 +206,38 @@
       font-size: 14px;
     }
   </style>
+</head>
 
- <body>
-  <div class="main-content">
-    <header>
-      <div class="logo">
-        <img src="The Country Book Logo.png" alt="The Country Book Logo" class="logo-img">
-        <div>
-          <div class="logo-title">The Country Book</div>
-          <div class="tagline">An Incredible World</div>
-        </div>
+<body>
+
+  <header>
+    <div class="logo">
+      <img src="The Country Book Logo.png" alt="The Country Book Logo" class="logo-img">
+      <div>
+        <div class="logo-title">The Country Book</div>
+        <div class="tagline">An Incredible World</div>
       </div>
-<nav><!-- Sidebar Menu -->
-  
-    <a href="index.html">Home</a>
-    <a href="contrysite[a-m].html">Nationbox 1</a>
-    <a href="contrysite[n-z].html">Nationbox 2</a>
-    <a href="aboutus.html">About Us</a>
-    <a href="awonderfulworld.html">GlobeX</a>
-</nav>
-</header>
-  <!-- Main Content -->
+    </div>
+
+    <div class="menu-container">
+      <div class="hamburger-icon" onclick="toggleMenu()">&#9776;</div>
+      <div id="myDropdown" class="dropdown-content">
+        <a href="index.html">Home</a>
+        <a href="contrysite[a-m].html">Nationbox 1</a>
+        <a href="contrysite[n-z].html">Nationbox 2</a>
+        <a href="aboutus.html">About Us</a>
+        <a href="awonderfulworld.html">GlobeX</a>
+      </div>
+    </div>
+  </header>
+
   <div class="main-content">
     <section class="hero">
       <div class="wonder-box glass">
         <h1>Welcome to The Country Book</h1>
       </div>
 
-      <img src="realistic country doodle 3.png" alt="the country book doodle" width="100%">
+      <img src="realistic country doodle 3.png" alt="the country book doodle">
 
       <p>
         <i><b>Hello</b></i><br><br>
@@ -202,29 +263,38 @@
 
       <h4>
         <b>Explore. Discover. Learn.</b><br><br>
-        Use the blue navigation bar above, at the top of the page, and you will find <b>NationBoxes, Credits, About Us and GlobeX</b>. These will guide you to explore more of this website as they are functional.<br>
-        Through the blue bar go to Nationboxes, meet the creator, or journey through the GlobeX — just click on.<br>
+        Use the menu icon at the top right of the page. You will find <b>NationBoxes, Credits, About Us and GlobeX</b>. These will guide you to explore more of this website as they are functional.<br>
+        Through the menu go to Nationboxes, meet the creator, or journey through the GlobeX — just click on.<br>
         An incredible world in a simple website.
       </h4>
     
- <div class="social-icons">
-        <i class="fab fa-facebook-f"></i>
-        <i class="fab fa-instagram"></i>
-      </div>
+      
     </section>
-    <!-- Footer -->
+
     <footer>
       &copy; 2025. <i>The Country Book.</i> An Incredible World. All rights reserved.<br><br>
       <a href="T&C.html" style="color:#004080; font-weight: bold;">Terms and Conditions</a>
     </footer>
   </div>
+
+  <script>
+    function toggleMenu() {
+      document.getElementById("myDropdown").classList.toggle("show");
+    }
+
+    // Close the dropdown if the user clicks outside of it
+    window.onclick = function(event) {
+      if (!event.target.matches('.hamburger-icon')) {
+        var dropdowns = document.getElementsByClassName("dropdown-content");
+        for (var i = 0; i < dropdowns.length; i++) {
+          var openDropdown = dropdowns[i];
+          if (openDropdown.classList.contains('show')) {
+            openDropdown.classList.remove('show');
+          }
+        }
+      }
+    }
+  </script>
+
 </body>
 </html>
-
-
-
-
-
-
-
-
