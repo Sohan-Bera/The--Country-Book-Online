@@ -48,32 +48,64 @@
       color: white;
     }
 
-    nav {
-      display: flex;
-      flex-wrap: wrap;
-      justify-content: center;
-      gap: 10px;
+    /* --- HAMBURGER MENU STYLES --- */
+    .menu-container {
+      position: relative;
+      display: inline-block;
     }
 
-    nav a {
-      margin: 0 5px;
-      padding: 8px 16px;
-      background-color: #e6f0ff;
+    .hamburger-icon {
+      font-size: 30px;
+      cursor: pointer;
+      color: white;
+      padding: 5px 10px;
+      user-select: none;
+      transition: color 0.3s;
+    }
+
+    .hamburger-icon:hover {
+      color: #ff1a8c;
+    }
+
+    /* The Dropdown Box */
+    .dropdown-content {
+      display: none; /* Hidden by default */
+      position: absolute;
+      right: 0;
+      top: 50px;
+      background-color: #ffffff;
+      min-width: 200px;
+      box-shadow: 0 8px 16px rgba(0,0,0,0.2);
+      border-radius: 8px;
+      z-index: 1001;
+      overflow: hidden;
+    }
+
+    /* Links inside the dropdown */
+    .dropdown-content a {
       color: #002147;
+      padding: 12px 16px;
       text-decoration: none;
+      display: block;
       font-weight: bold;
-      border-radius: 6px;
-      border: 2px solid transparent;
-      transition: all 0.3s ease;
-      font-size: 16px;
+      border-bottom: 1px solid #f0f0f0;
+      transition: background-color 0.3s;
     }
 
-    nav a:hover {
+    .dropdown-content a:last-child {
+      border-bottom: none;
+    }
+
+    .dropdown-content a:hover {
       background-color: #ff1a8c;
       color: white;
-      border-color: #ff1a8c;
     }
 
+    /* Class to show the menu (toggled by JS) */
+    .show {
+      display: block;
+    }
+    
     .main-content {
       background-color: #eef5ff;
       padding: 20px;
@@ -182,15 +214,18 @@
           <div class="logo-title">The Country Book</div>
           <div class="tagline">An Incredible World</div>
         </div>
-      </div>
+    
 
-      <nav>
+      <div class="menu-container">
+      <div class="hamburger-icon" onclick="toggleMenu()">&#9776;</div>
+      <div id="myDropdown" class="dropdown-content">
         <a href="index.html">Home</a>
         <a href="contrysite[a-m].html">Nationbox 1</a>
         <a href="contrysite[n-z].html">Nationbox 2</a>
         <a href="aboutus.html">About Us</a>
         <a href="awonderfulworld.html">GlobeX</a>
-      </nav>
+      </div>
+  
     </header>
 
     <section class="hero">
@@ -287,7 +322,28 @@
 <div style="text-align:center"> <a href="T&C.html"=style="color:#004080; font-weight: bold;">Terms and Conditions</a>
 </div>
 </footer>
+        <div>
+          <script>
+    function toggleMenu() {
+      document.getElementById("myDropdown").classList.toggle("show");
+    }
+
+    // Close the dropdown if the user clicks outside of it
+    window.onclick = function(event) {
+      if (!event.target.matches('.hamburger-icon')) {
+        var dropdowns = document.getElementsByClassName("dropdown-content");
+        for (var i = 0; i < dropdowns.length; i++) {
+          var openDropdown = dropdowns[i];
+          if (openDropdown.classList.contains('show')) {
+            openDropdown.classList.remove('show');
+          }
+        }
+      }
+    }
+  </script>
+        </div>
  
  </body>
 </html>
+
 
