@@ -1,300 +1,395 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Home - The Country Book</title>
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>NOBLE MAP by The Country Book</title>
+    
+    <link rel="icon" type="image/png" href="C:\Users\sohan\OneDrive\Desktop\logo.png">
 
-  <style>
-    /* General Resets */
-    * {
-      box-sizing: border-box;
-      font-family: Arial, sans-serif;
-      margin: 0;
-      padding: 0;
-    }
+    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
 
-    body {
-      color: #222;
-      background-color: #f0f4ff;
-    }
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;600;800&display=swap');
+        
+        :root {
+            --bg-dark: #030303;
+            --accent-green: #34d399;
+            --text-muted: #9ca3af;
+        }
 
-    /* Header Styling */
-    header {
-      background-color: #004080;
-      color: white;
-      padding: 15px 20px;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      position: sticky;
-      top: 0;
-      box-shadow: 0 2px 6px rgba(0, 0, 0, 0.15);
-      z-index: 1000;
-    }
+        body {
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            background-color: var(--bg-dark);
+            color: #ffffff;
+            overflow-x: hidden;
+        }
 
-    .logo {
-      display: flex;
-      align-items: center;
-    }
+        /* Minimal clean scrollbar */
+        ::-webkit-scrollbar {
+            width: 6px;
+        }
+        ::-webkit-scrollbar-track {
+            background: var(--bg-dark);
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #222;
+            border-radius: 3px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: #333;
+        }
 
-    .logo-img {
-      height: 60px; /* Slightly adjusted for better proportion */
-      margin-right: 10px;
-    }
+        /* Pin WebGL context to background while keeping UI interactive */
+        .viewport-canvas {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 10;
+            pointer-events: none;
+        }
 
-    .logo-title {
-      font-size: 28px;
-      font-weight: bold;
-    }
+        /* Premium typography utility */
+        .text-stroke {
+            -webkit-text-stroke: 1px rgba(255, 255, 255, 0.15);
+            color: transparent;
+        }
 
-    .tagline {
-      font-size: 16px;
-      color: #e0e0e0;
-    }
-
-    /* --- HAMBURGER MENU STYLES --- */
-    .menu-container {
-      position: relative;
-      display: inline-block;
-    }
-
-    .hamburger-icon {
-      font-size: 30px;
-      cursor: pointer;
-      color: white;
-      padding: 5px 10px;
-      user-select: none;
-      transition: color 0.3s;
-    }
-
-    .hamburger-icon:hover {
-      color: #ff1a8c;
-    }
-
-    /* The Dropdown Box */
-    .dropdown-content {
-      display: none; /* Hidden by default */
-      position: absolute;
-      right: 0;
-      top: 50px;
-      background-color: #ffffff;
-      min-width: 200px;
-      box-shadow: 0 8px 16px rgba(0,0,0,0.2);
-      border-radius: 8px;
-      z-index: 1001;
-      overflow: hidden;
-    }
-
-    /* Links inside the dropdown */
-    .dropdown-content a {
-      color: #002147;
-      padding: 12px 16px;
-      text-decoration: none;
-      display: block;
-      font-weight: bold;
-      border-bottom: 1px solid #f0f0f0;
-      transition: background-color 0.3s;
-    }
-
-    .dropdown-content a:last-child {
-      border-bottom: none;
-    }
-
-    .dropdown-content a:hover {
-      background-color: #ff1a8c;
-      color: white;
-    }
-
-    /* Class to show the menu (toggled by JS) */
-    .show {
-      display: block;
-    }
-
-    /* --- MAIN CONTENT --- */
-    .main-content {
-      background-color: #eef5ff;
-      padding: 20px;
-      padding-bottom: 40px;
-      min-height: 100vh;
-    }
-
-    section.hero {
-      padding: 30px 15px;
-      text-align: center;
-    }
-
-    section.hero p {
-      color: #333;
-      font-size: 17px;
-      line-height: 1.6;
-      margin-bottom: 20px;
-    }
-
-    .hero img {
-      max-width: 300px;
-      width: 100%;
-      height: auto;
-      margin: 20px auto;
-      display: block;
-    }
-
-    .wonder-box {
-      border: 2px solid #c9c9ff;
-      border-radius: 10px;
-      padding: 20px;
-      margin: 30px auto;
-      max-width: 750px;
-      background-color: #ffffff;
-      box-shadow: 0 2px 6px rgba(0, 0, 0, 0.08);
-    }
-
-    .wonder-box.glass {
-      backdrop-filter: blur(8px);
-      background: rgba(255, 255, 255, 0.3);
-      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
-      border: 4px solid #c9c9ff;
-      color: #2a003f;
-    }
-
-    .wonder-box p {
-      color: #2a003f;
-      font-size: 17px;
-      text-align: center;
-      margin-top: 10px;
-    }
-
-    h1, h2, h4 {
-      color: #003366;
-      margin-top: 20px;
-    }
-
-    h1 {
-      font-size: 28px;
-    }
-
-    h4 {
-      text-align: left;
-      font-size: 17px;
-      margin-top: 30px;
-      color: #222;
-    }
-
-    .social-icons {
-      margin-top: 30px;
-      font-size: 24px;
-      color: #004080;
-    }
-
-    .social-icons i {
-      margin: 0 10px;
-      cursor: pointer;
-      transition: color 0.3s;
-    }
-
-    .social-icons i:hover {
-      color: #ff1a8c;
-    }
-
-    footer {
-      background-color: #b8ffe3;
-      text-align: center;
-      padding: 30px;
-      margin-top: 40px;
-      color: #222;
-      font-size: 14px;
-    }
-  </style>
+        .cta-pill {
+            background: rgba(255, 255, 255, 0.05);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+        }
+    </style>
 </head>
-
 <body>
 
-  <header>
-    <div class="logo">
-      <img src="The Country Book Logo.png" alt="The Country Book Logo" class="logo-img">
-      <div>
-        <div class="logo-title">The Country Book</div>
-        <div class="tagline">An Incredible World</div>
-      </div>
-    </div>
+    <canvas id="webgl-canvas" class="viewport-canvas"></canvas>
 
-    <div class="menu-container">
-      <div class="hamburger-icon" onclick="toggleMenu()">&#9776;</div>
-      <div id="myDropdown" class="dropdown-content">
-        <a href="index.html">Home</a>
-        <a href="contrysite[a-m].html">Nationbox 1</a>
-        <a href="contrysite[n-z].html">Nationbox 2</a>
-        <a href="awonderfulworld.html">Globex</a>
-        <a href="aboutus.html">About Us</a>
-      </div>
-    </div>
-  </header>
-
-  <div class="main-content">
-    <section class="hero">
-      <div class="wonder-box glass">
-        <h1>Welcome to The Country Book</h1>
-      </div>
-
-      <img src="realistic country doodle 3.png" alt="the country book doodle">
-
-      <p>
-        <i><b>Hello</b></i><br><br>
-        <b>The Country Book</b> is a curated digital collection that brings the world into view one nation at a time. 
-        Organized with clarity and crafted for curiosity, each entry offers a brief yet meaningful glimpse into a country's identity, 
-        from its capital and population to iconic dishes. This book is your simple yet structured window into the diversity of our world.
-      </p>
-
-      <p>
-        You can find every country in alphabetical order in the next pages.<br>
-        Every country is listed in table format along with their name, capital, famous food, and population, 
-        which will help you find them quickly in one place.
-      </p>
-
-      <div class="wonder-box">
-        <h2>United Nations (UN)</h2>
-        <p>
-          The United Nations (UN) is an intergovernmental organization established on October 24, 1945, after the end of World War II.
-          It was created to promote global peace, security, and cooperation among countries, making it nearly universal in its membership.<br><br>
-          The UN works to maintain international peace and security, protect human rights, support sustainable development, provide humanitarian aid, and uphold international law.
-        </p>
-      </div>
-
-      <h4>
-        <b>Explore. Discover. Learn.</b><br><br>
-        Use the hamburger menu where you will find <b>NationBoxes, Credits, About Us and GlobeX</b>. These will guide you to explore more of this website as they are functional.<br>
+    <header class="fixed top-0 left-0 w-full z-50 flex justify-between items-center px-6 md:px-12 py-6 mix-blend-difference">
+        <div class="text-sm font-bold tracking-widest text-white">NOBLE MAP</div>
         
-        An incredible world in a simple website.
-      </h4>
-    
-      
-    </section>
+        <a href="#" class="cta-pill inline-block border border-white/20 px-4 md:px-5 py-2 text-[10px] md:text-xs font-semibold uppercase tracking-widest rounded-full hover:bg-white hover:text-black transition-all duration-300 text-center pointer-events-auto">
+            NOBLE MAP CONNECT
+        </a>
+    </header>
 
-    <footer>
-      &copy; 2026. <i>The Country Book.</i> An Incredible World. All rights reserved.<br><br>
-      <a href="T&C.html" style="color:#004080; font-weight: bold;">Terms and Conditions</a>
-    </footer>
-  </div>
+    <main class="relative z-20 w-full">
 
-  <script>
-    function toggleMenu() {
-      document.getElementById("myDropdown").classList.toggle("show");
-    }
+        <section id="hero" class="w-full h-screen flex flex-col justify-center px-6 md:px-24 relative">
+            <div class="max-w-4xl z-30 pointer-events-auto">
+                <span class="inline-block text-xs font-bold tracking-[0.3em] uppercase text-emerald-400 mb-4 opacity-0 hero-fade">
+                    Welcome to 
+                </span>
+                <h1 class="hero-fade text-5xl md:text-8xl font-extrabold tracking-tighter leading-none mb-6 opacity-0">
+                    NOBLE <br><span class="text-stroke">MAP</span>
+                </h1>
+                <p class="hero-fade text-gray-400 text-base md:text-lg max-w-xl mb-6 opacity-0 leading-relaxed">
+                    <strong class="text-white font-semibold">Noble Map</strong> is an interactive spatial matrix unifying the global footprint into a single fluid interface. The platform seamlessly maps every nation’s population vectors, capital cities, heraldic flags, and iconic culinary legacies alongside the world's most incredible facts and cultural cornerstones.
+                </p>
+            </div>
+            
+            <div class="hero-fade absolute bottom-12 left-6 md:left-24 flex items-center space-x-3 opacity-0">
+                <div class="w-1 h-12 bg-white/20 relative overflow-hidden rounded-full">
+                    <div class="absolute top-0 left-0 w-full h-1/2 bg-emerald-400 animate-bounce"></div>
+                </div>
+                <span class="text-xs uppercase tracking-widest text-gray-500">Scroll to Morph</span>
+            </div>
+        </section>
 
-    // Close the dropdown if the user clicks outside of it
-    window.onclick = function(event) {
-      if (!event.target.matches('.hamburger-icon')) {
-        var dropdowns = document.getElementsByClassName("dropdown-content");
-        for (var i = 0; i < dropdowns.length; i++) {
-          var openDropdown = dropdowns[i];
-          if (openDropdown.classList.contains('show')) {
-            openDropdown.classList.remove('show');
-          }
-        }
-      }
-    }
-  </script>
+        <section id="features" class="w-full min-h-screen flex items-center justify-center md:justify-end px-6 md:px-24 py-24 relative">
+            <a href="#" class="feature-card block w-full max-w-xl z-30 bg-black/40 backdrop-blur-md p-6 md:p-8 rounded-2xl border border-white/5 opacity-0 pointer-events-auto hover:border-emerald-400/30 transition-all duration-300 group">
+                <span class="text-xs font-bold tracking-widest text-emerald-400 uppercase">01 / Explore the Grid Globe with</span>
+                <h2 class="text-3xl md:text-5xl font-bold tracking-tight mt-2 mb-4 group-hover:text-emerald-300 transition-colors">GLOBEBOX 1</h2>
+                <p class="text-gray-400 text-sm md:text-base leading-relaxed mb-6">
+                    Explore country names, capitals, famous foods and population data. Population data is based on 2025/2026 estimates. The population data fluctuates annually.<br><br>Listed: [N-11] [O-1] [P-11] [Q-1] [R-3] [S-27] [T-11] [U-7] [V-4] [W-1] [Y-1] [Z-2]
+                </p>
+                <div class="h-[1px] w-full bg-white/10 my-4"></div>
+                <div class="flex justify-between text-[10px] md:text-xs text-gray-500 font-mono">
+                    <span>NATIONS LISTED: A-M</span>
+                    <span>ITEMS: 120</span>
+                    <span>STATUS: UN Recognized</span>
+                </div>
+            </a>
+        </section>
 
+        <section id="technical" class="w-full min-h-screen flex items-center justify-center md:justify-start px-6 md:px-24 py-24 relative">
+            <a href="#" class="tech-card block w-full max-w-xl z-30 bg-black/40 backdrop-blur-md p-6 md:p-8 rounded-2xl border border-white/5 opacity-0 pointer-events-auto hover:border-emerald-400/30 transition-all duration-300 group">
+                <span class="text-xs font-bold tracking-widest text-emerald-400 uppercase">02 / Search with </span>
+                <h2 class="text-3xl md:text-5xl font-bold tracking-tight mt-2 mb-4 group-hover:text-emerald-300 transition-colors">GLOBEBOX 2</h2>
+                <p class="text-gray-400 text-sm md:text-base leading-relaxed mb-6">
+                    Explore more with more nations, increase your productivity with highlighted economically strong nations.<br><br>With Listed: [A-11] [B-17] [C-17] [D-4] [E-8] [F-5] [G-11] [H-3] [I-8] [J-3] [K-6] [L-9] [M-18]
+                </p>
+                <div class="h-[1px] w-full bg-white/10 my-4"></div>
+                <div class="flex justify-between text-[10px] md:text-xs text-gray-500 font-mono">
+                    <span>NATIONS: N-Z</span>
+                    <span>ITEMS: 86</span>
+                    <span>STATUS: UN Recognized</span>
+                </div>
+            </a>
+        </section>
+
+        <section id="outro" class="w-full h-screen flex flex-col justify-center items-center text-center px-6 relative">
+            <div class="z-30 max-w-2xl pointer-events-auto">
+                <h2 class="text-4xl md:text-7xl font-extrabold tracking-tighter mb-6">Explore Facts</h2>
+                <p class="text-gray-400 max-w-md mx-auto mb-8">
+                    Integrate with remarkable facts with highlighted seven wonders which offers a clear look at these iconic landmarks and 
+                    inspiration behind their global significance. The idea was born from a passion to share wonders that defined human achievements
+                    and natural beauty all in one place.
+                </p>
+                <a href="#" class="bg-white text-black font-semibold text-xs md:text-sm uppercase tracking-widest px-6 md:px-8 py-3 md:py-4 rounded-full hover:bg-emerald-400 hover:scale-105 transition-all duration-300 inline-block text-center shadow-lg shadow-white/5">
+                    Learn more with NOBLE MAP
+                </a>
+            </div>
+        </section>
+
+        <footer class="w-full relative z-30 bg-[#070707]/80 backdrop-blur-xl border-t border-white/5 px-6 md:px-24 pt-16 pb-8 pointer-events-auto">
+            <div class="max-w-7xl mx-auto grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-10 mb-16">
+                
+                <div class="space-y-4">
+                    <div class="flex items-center space-x-3">
+                        <span class="text-sm font-extrabold tracking-widest text-white">NOBLE MAP</span>
+                    </div>
+                    <p class="text-xs text-gray-500 leading-relaxed max-w-xs">
+                        Real-time visualization pipeline logging political boundaries, demographic datasets, and geographical indexes.
+                    </p>
+                </div>
+
+                <div>
+                    <h4 class="text-xs font-bold tracking-widest text-emerald-400 uppercase mb-4">SYSTEMS</h4>
+                    <ul class="space-y-2.5 text-xs text-gray-400 font-medium">
+                        <li><a href="#" class="hover:text-white transition-colors duration-200">Globe Registry 01</a></li>
+                        <li><a href="#" class="hover:text-white transition-colors duration-200">Search Framework 02</a></li>
+                        <li><a href="#" class="hover:text-white transition-colors duration-200">Spatial Topology Matrix</a></li>
+                    </ul>
+                </div>
+
+                <div>
+                    <h4 class="text-xs font-bold tracking-widest text-emerald-400 uppercase mb-4">DATA & LOGS</h4>
+                    <ul class="space-y-2.5 text-xs text-gray-400 font-medium">
+                        <li><a href="#" class="hover:text-white transition-colors duration-200">2025/2026 UN Census Metrics</a></li>
+                        <li><a href="#" class="hover:text-white transition-colors duration-200">Economic Strength Grids</a></li>
+                        <li><a href="#" class="hover:text-white transition-colors duration-200">Open-Source Core Latency</a></li>
+                    </ul>
+                </div>
+
+                <div>
+                    <h4 class="text-xs font-bold tracking-widest text-gray-400 uppercase mb-4">NODE LOCATION</h4>
+                    <div class="text-xs space-y-2 text-gray-500 font-mono">
+                        <div>LATENCY: <span class="text-emerald-400">0.04ms</span></div>
+                        <div>STATUS: OPERATIONAL</div>
+                        <div>HOST: GLOBAL NODE LAB</div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="max-w-7xl mx-auto pt-8 border-t border-white/5 flex flex-col md:flex-row justify-between items-center text-[11px] text-gray-600 font-mono gap-4">
+                <div class="tracking-wide flex flex-wrap items-center justify-center md:justify-start gap-2">
+                    <span>&copy; NOBLE MAP.github.io <i>by The Country Book</i>. ALL RIGHTS RESERVED.</span>
+                    <span class="text-gray-800 hidden sm:inline">|</span>
+                    <span class="flex items-center gap-1.5 text-gray-500">
+                        DEVELOPED & BASED IN INDIA
+                        <img src="https://flagcdn.com/w20/in.png" 
+                             srcset="https://flagcdn.com/w40/in.png 2x" 
+                             width="20" 
+                             alt="India Flag" 
+                             class="inline-block rounded-sm saturate-120 opacity-70 hover:opacity-100 transition-all duration-300 vertical-align-middle">
+                    </span>
+                </div>
+                <div class="flex space-x-6">
+                    <a href="#" class="hover:text-gray-400 transition-colors">Security & Privacy</a>
+                    <a href="#" class="hover:text-gray-400 transition-colors">Terms & Conditions</a>
+                </div>
+            </div>
+        </footer>
+
+    </main>
+
+    <script>
+        gsap.registerPlugin(ScrollTrigger);
+
+        const appState = {
+            canvas: document.querySelector('#webgl-canvas'),
+            clock: new THREE.Clock(),
+            mouse: { x: 0, y: 0, currentX: 0, currentY: 0 },
+            meshes: {},
+            materials: {}
+        };
+
+        /* -------------------------------------------------------------------------- */
+        /* 1. Environment & Scene Initializer                                         */
+        /* -------------------------------------------------------------------------- */
+        const scene = new THREE.Scene();
+        scene.fog = new THREE.FogExp2('#030303', 0.12);
+
+        const camera = new THREE.PerspectiveCamera(45, window.innerWidth / window.innerHeight, 0.1, 100);
+        camera.position.set(0, 0, 8);
+
+        const renderer = new THREE.WebGLRenderer({
+            canvas: appState.canvas,
+            antialias: true,
+            alpha: true 
+        });
+        renderer.setSize(window.innerWidth, window.innerHeight);
+        renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
+
+        /* -------------------------------------------------------------------------- */
+        /* 2. Procedural Core Models Definition                                       */
+        /* -------------------------------------------------------------------------- */
+        const baseGeometry = new THREE.IcosahedronGeometry(2, 1);
+        
+        appState.materials.core = new THREE.MeshPhongMaterial({
+            color: 0x111111,
+            emissive: 0x052c1e,
+            specular: 0x34d399,
+            shininess: 40,
+            flatShading: true
+        });
+
+        appState.meshes.core = new THREE.Mesh(baseGeometry, appState.materials.core);
+        scene.add(appState.meshes.core);
+
+        appState.materials.wireframe = new THREE.MeshBasicMaterial({
+            color: 0x34d399,
+            wireframe: true,
+            transparent: true,
+            opacity: 0.15
+        });
+        
+        const wireframeMesh = new THREE.Mesh(baseGeometry, appState.materials.wireframe);
+        wireframeMesh.scale.setScalar(1.002); 
+        appState.meshes.core.add(wireframeMesh);
+
+        /* -------------------------------------------------------------------------- */
+        /* 3. Lighting Rig                                                            */
+        /* -------------------------------------------------------------------------- */
+        const ambientLight = new THREE.AmbientLight(0xffffff, 0.2);
+        scene.add(ambientLight);
+
+        const emeraldPoint = new THREE.PointLight(0x34d399, 2, 50);
+        emeraldPoint.position.set(5, 5, 5);
+        scene.add(emeraldPoint);
+
+        const blueFillPoint = new THREE.PointLight(0x3b82f6, 1.5, 30);
+        blueFillPoint.position.set(-5, -5, 3);
+        scene.add(blueFillPoint);
+
+        /* -------------------------------------------------------------------------- */
+        /* 4. Interaction Handlers & Render Loop                                      */
+        /* -------------------------------------------------------------------------- */
+        const handleMouseMove = (event) => {
+            appState.mouse.x = (event.clientX / window.innerWidth) * 2 - 1;
+            appState.mouse.y = -(event.clientY / window.innerHeight) * 2 + 1;
+        };
+        window.addEventListener('mousemove', handleMouseMove);
+
+        const renderLoop = () => {
+            const elapsedTime = appState.clock.getElapsedTime();
+
+            appState.meshes.core.rotation.y = elapsedTime * 0.15;
+            appState.meshes.core.rotation.x = elapsedTime * 0.08;
+
+            appState.mouse.currentX += (appState.mouse.x - appState.mouse.currentX) * 0.05;
+            appState.mouse.currentY += (appState.mouse.y - appState.mouse.currentY) * 0.05;
+
+            scene.rotation.y = appState.mouse.currentX * 0.25;
+            scene.rotation.x = -appState.mouse.currentY * 0.25;
+
+            renderer.render(scene, camera);
+            requestAnimationFrame(renderLoop);
+        };
+
+        /* -------------------------------------------------------------------------- */
+        /* 5. GSAP Layout Animation Timelines                                         */
+        /* -------------------------------------------------------------------------- */
+        gsap.to('.hero-fade', {
+            opacity: 1,
+            y: 0,
+            duration: 1.2,
+            stagger: 0.15,
+            ease: "power4.out",
+            delay: 0.2
+        });
+
+        const scrollTimeline = gsap.timeline({
+            scrollTrigger: {
+                trigger: "main",
+                start: "top top",
+                end: "bottom bottom",
+                scrub: 1
+            }
+        });
+
+        const isMobile = window.innerWidth < 768;
+
+        scrollTimeline
+            .to(appState.meshes.core.position, { 
+                x: isMobile ? 0 : 2.2, 
+                y: isMobile ? -1.0 : 0.5, 
+                z: isMobile ? -1 : -1, 
+                ease: "power1.inOut" 
+            }, 0)
+            .to(appState.meshes.core.scale, { 
+                x: isMobile ? 0.95 : 1.3, 
+                y: isMobile ? 0.95 : 1.3, 
+                z: isMobile ? 0.95 : 1.3, 
+                ease: "power1.inOut" 
+            }, 0)
+            .to(appState.materials.core.color, { r: 0.05, g: 0.15, b: 0.1, ease: "power1.inOut" }, 0)
+            
+            .to(appState.meshes.core.position, { 
+                x: isMobile ? 0 : -2.5, 
+                y: isMobile ? 1.0 : -0.2, 
+                z: 0, 
+                ease: "power1.inOut" 
+            }, 1)
+            .to(appState.meshes.core.rotation, { z: Math.PI * 0.5, ease: "power1.inOut" }, 1)
+            
+            .to(appState.meshes.core.position, { x: 0, y: isMobile ? 0.5 : 0, z: isMobile ? 1.2 : 2.5, ease: "power2.out" }, 2)
+            .to(appState.materials.wireframe, { opacity: 0.4, ease: "power2.out" }, 2);
+
+        gsap.to(".feature-card", {
+            scrollTrigger: {
+                trigger: "#features",
+                start: "top 75%",
+                toggleActions: "play reverse play reverse"
+            },
+            opacity: 1,
+            y: 0,
+            duration: 0.8,
+            ease: "power3.out"
+        });
+
+        gsap.to(".tech-card", {
+            scrollTrigger: {
+                trigger: "#technical",
+                start: "top 75%",
+                toggleActions: "play reverse play reverse"
+            },
+            opacity: 1,
+            y: 0,
+            duration: 0.8,
+            ease: "power3.out"
+        });
+
+        /* -------------------------------------------------------------------------- */
+        /* 6. Window Resize Matrix Recalculations                                     */
+        /* -------------------------------------------------------------------------- */
+        const handleWindowResize = () => {
+            camera.aspect = window.innerWidth / window.innerHeight;
+            camera.updateProjectionMatrix();
+
+            renderer.setSize(window.innerWidth, window.innerHeight);
+            renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
+        };
+        window.addEventListener('resize', handleWindowResize);
+
+        renderLoop();
+    </script>
 </body>
 </html>
